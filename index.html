@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>MBAC Student Daily Presence | Dual Submission + Auto Checkout (5h)</title>
+  <title>MBAC Student Daily Presence | 5h / 50min Checkout Options</title>
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -169,7 +169,7 @@
     .btn-checkin {
       background: #2a7f6e;
     }
-    .btn-checkout {
+    .btn-checkout-early {
       background: #c96f0e;
     }
     .btn:hover {
@@ -290,7 +290,6 @@
 </head>
 <body>
 <div class="app-container">
-  <!-- navbar with MBAC branding -->
   <div class="navbar">
     <div class="logo-area">
       <div class="logo">MBAC</div>
@@ -303,7 +302,6 @@
   </div>
 
   <div class="dashboard">
-    <!-- LEFT: PRESENCE FORM -->
     <div class="form-section">
       <h2><i class="fas fa-user-check"></i> Daily Presence Form</h2>
       <form id="presenceForm">
@@ -335,12 +333,12 @@
         <div class="form-group">
           <label>📥 Check-in Time (IN) *</label>
           <input type="text" name="SignInDateTime" id="signInTime" readonly placeholder="Click 'Check-in' button">
-          <div class="info-hint"><i class="fas fa-info-circle"></i> Check-in sets OUT automatically +5 hours</div>
+          <div class="info-hint"><i class="fas fa-info-circle"></i> Sets OUT to +5 hours automatically</div>
         </div>
         <div class="form-group">
           <label>📤 Check-out Time (OUT)</label>
-          <input type="text" name="SignOutDateTime" id="signOutTime" readonly placeholder="Auto +5h from IN or manual">
-          <div class="info-hint"><i class="fas fa-clock"></i> OUT defaults to 5 hours after IN</div>
+          <input type="text" name="SignOutDateTime" id="signOutTime" readonly placeholder="Auto 5h or early 50min">
+          <div class="info-hint"><i class="fas fa-clock"></i> Use early button for 50 min after IN</div>
         </div>
         <div class="form-group">
           <label>Signature / Name *</label>
@@ -348,15 +346,14 @@
         </div>
         
         <div style="display: flex; gap: 12px;">
-          <button type="button" class="btn btn-checkin" id="checkInBtn"><i class="fas fa-sign-in-alt"></i> Check-in (auto set IN+5h OUT)</button>
-          <button type="button" class="btn btn-checkout" id="checkOutBtn"><i class="fas fa-sign-out-alt"></i> Override Check-out (manual)</button>
+          <button type="button" class="btn btn-checkin" id="checkInBtn"><i class="fas fa-sign-in-alt"></i> Check-in (IN + 5h OUT)</button>
+          <button type="button" class="btn btn-checkout-early" id="earlyOutBtn"><i class="fas fa-hourglass-half"></i> Early Check-out (IN + 50 min)</button>
         </div>
         <button type="submit" class="btn" style="background:#ffb347; color:#0b2b3b; margin-top: 15px;"><i class="fas fa-save"></i> Submit Presence → Dual Databases</button>
       </form>
       <div id="formFeedback" class="feedback-message"></div>
     </div>
 
-    <!-- RIGHT: HISTORY & STATISTICS -->
     <div class="history-section">
       <h2><i class="fas fa-history"></i> Daily Presence History</h2>
       <div id="historyList" class="history-list">
@@ -370,7 +367,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-col">
@@ -425,6 +421,16 @@
 
   function addMinutesToDate(date, minutes) {
     return new Date(date.getTime() + minutes * 60 * 1000);
+  }
+
+  // Parse stored date string (en-GB format: "dd/MM/yyyy, HH:mm:ss") into Date object
+  function parseDateTimeString(dateStr) {
+    if (!dateStr || dateStr === 'Not checked in') return null;
+    // example: "08/04/2025, 14:35:22"
+    let [datePart, timePart] = dateStr.split(', ');
+    let [day, month, year] = datePart.split('/');
+    let [hour, minute, second] = timePart.split(':');
+    return new Date(year, month-1, day, hour, minute, second);
   }
 
   // LIVE CLOCK
@@ -492,23 +498,33 @@
     else document.getElementById('activeStatus').innerHTML = '✅ All sessions closed today';
   }
 
-  // ---------- AUTO CHECKOUT: 5 HOURS (300 MINUTES) AFTER CHECKIN ----------
+  // ---------- CHECK-IN: sets OUT to +5 hours (300 minutes) ----------
   document.getElementById('checkInBtn').addEventListener('click', () => {
     const now = new Date();
     const inDateTime = formatDateTime(now);
-    // 5 hours = 300 minutes
-    const outDateTime = formatDateTime(addMinutesToDate(now, 300));
+    const outDateTime = formatDateTime(addMinutesToDate(now, 300)); // 5 hours
     
     document.getElementById('signInTime').value = inDateTime;
     document.getElementById('signOutTime').value = outDateTime;
     showFeedback(`✅ Check-in: ${inDateTime} | Auto check-out set to +5 hours (${outDateTime})`, 'success');
   });
 
-  // Manual override for checkout
-  document.getElementById('checkOutBtn').addEventListener('click', () => {
-    const outNow = getCurrentDateTime();
-    document.getElementById('signOutTime').value = outNow;
-    showFeedback(`🕒 Manual check-out override: ${outNow}`, 'success');
+  // ---------- EARLY CHECK-OUT: sets OUT to IN + 50 minutes ----------
+  document.getElementById('earlyOutBtn').addEventListener('click', () => {
+    const signInValue = document.getElementById('signInTime').value;
+    if (!signInValue || signInValue === '') {
+      showFeedback('❌ Please set check-in time first using the "Check-in" button.', 'error');
+      return;
+    }
+    const inDate = parseDateTimeString(signInValue);
+    if (!inDate) {
+      showFeedback('❌ Invalid check-in time format. Please redo check-in.', 'error');
+      return;
+    }
+    const outDate = addMinutesToDate(inDate, 50); // 50 minutes after IN
+    const outDateTime = formatDateTime(outDate);
+    document.getElementById('signOutTime').value = outDateTime;
+    showFeedback(`🕒 Early checkout set to 50 minutes after IN: ${outDateTime}`, 'success');
   });
 
   function showFeedback(message, type) {
@@ -570,7 +586,6 @@
     return { fd, studentName, studentId, department, level, signInTime, signOutTime, signature, submissionTimestamp };
   }
 
-  // Thank you page redirect (data URI)
   function redirectToThankYou() {
     const thankYouHTML = `<!DOCTYPE html>
     <html lang="en">
@@ -675,13 +690,12 @@
     
     const signInField = document.getElementById('signInTime').value;
     if(!signInField) {
-      showFeedback('⚠️ Please click "Check-in" to set arrival time before submitting (auto OUT+5 hours).', 'error');
+      showFeedback('⚠️ Please click "Check-in" to set arrival time before submitting.', 'error');
       return;
     }
     
     const { fd, studentName: name, studentId: id, department, level, signInTime, signOutTime, signature: sig, submissionTimestamp } = buildFormDataFromFields();
     
-    // Save locally
     const newRecord = {
       studentName: name,
       studentId: id,
@@ -736,7 +750,6 @@
     }
   });
   
-  // Initial load
   loadHistoryFromStorage();
 </script>
 </body>
