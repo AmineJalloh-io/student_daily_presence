@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>MBAC Student Daily Presence Form</title>
-  <!-- Font Awesome 6 (free icons) -->
+  <title>MBAC Student Daily Presence | Dual Submission + Auto Checkout</title>
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -145,15 +145,18 @@
       box-shadow: 0 0 0 3px rgba(255,180,71,0.2);
     }
 
+    .info-hint {
+      font-size: 0.7rem;
+      color: #5f7f6e;
+      margin-top: 4px;
+      margin-left: 12px;
+    }
+
     .sign-row {
       display: flex;
       gap: 12px;
       align-items: center;
       flex-wrap: wrap;
-    }
-
-    .sign-row input {
-      flex: 1;
     }
 
     .btn {
@@ -294,7 +297,7 @@
 </head>
 <body>
 <div class="app-container">
-  <!-- top navbar with MBAC Logo & live datetime -->
+  <!-- navbar with MBAC branding -->
   <div class="navbar">
     <div class="logo-area">
       <div class="logo">MBAC</div>
@@ -311,7 +314,6 @@
     <div class="form-section">
       <h2><i class="fas fa-user-check"></i> Daily Presence Form</h2>
       <form id="presenceForm">
-        <!-- Student fields -->
         <div class="form-group">
           <label>Student Name *</label>
           <input type="text" name="Student Name" id="studentName" placeholder="Full name" required>
@@ -338,12 +340,14 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Presence Signing Date & Time (IN)</label>
+          <label>📥 Check-in Time (IN) *</label>
           <input type="text" name="SignInDateTime" id="signInTime" readonly placeholder="Click 'Check-in' button">
+          <div class="info-hint"><i class="fas fa-info-circle"></i> Check-in sets OUT automatically +60 min</div>
         </div>
         <div class="form-group">
-          <label>Presence Signing Out Date & Time (OUT)</label>
-          <input type="text" name="SignOutDateTime" id="signOutTime" readonly placeholder="Click 'Check-out' button">
+          <label>📤 Check-out Time (OUT)</label>
+          <input type="text" name="SignOutDateTime" id="signOutTime" readonly placeholder="Auto +60min from IN or manual">
+          <div class="info-hint"><i class="fas fa-clock"></i> OUT defaults to 60 minutes after IN</div>
         </div>
         <div class="form-group">
           <label>Signature / Name *</label>
@@ -351,10 +355,10 @@
         </div>
         
         <div style="display: flex; gap: 12px;">
-          <button type="button" class="btn btn-checkin" id="checkInBtn"><i class="fas fa-sign-in-alt"></i> Check-in (Set IN time)</button>
-          <button type="button" class="btn btn-checkout" id="checkOutBtn"><i class="fas fa-sign-out-alt"></i> Check-out (Set OUT time)</button>
+          <button type="button" class="btn btn-checkin" id="checkInBtn"><i class="fas fa-sign-in-alt"></i> Check-in (auto set IN+60 OUT)</button>
+          <button type="button" class="btn btn-checkout" id="checkOutBtn"><i class="fas fa-sign-out-alt"></i> Override Check-out (manual)</button>
         </div>
-        <button type="submit" class="btn" style="background:#ffb347; color:#0b2b3b; margin-top: 15px;"><i class="fas fa-save"></i> Submit Presence to Database</button>
+        <button type="submit" class="btn" style="background:#ffb347; color:#0b2b3b; margin-top: 15px;"><i class="fas fa-save"></i> Submit Presence → Dual Databases</button>
       </form>
       <div id="formFeedback" class="feedback-message"></div>
     </div>
@@ -378,9 +382,9 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h4>Contact</h4>
-        <p><i class="fas fa-phone-alt"></i> +232 76 123 456</p>
-        <p><i class="fas fa-envelope"></i> registrar@mbac.edu.sl</p>
-        <p><i class="fas fa-map-marker-alt"></i> 22 Wilkinson Road, Freetown</p>
+        <p><i class="fas fa-phone-alt"></i>+232-79-088-528 / +232-79-984-545 / +232-78-882-227</p>
+        <p><i class="fas fa-envelope"></i>mbacofwa26@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i>No. 2e Rokupa Estate, Rokupa, Freetown</p>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
@@ -410,7 +414,29 @@
 </div>
 
 <script>
-  // ---------- LIVE DATE & TIME ----------
+  // ---------- FORMATTING & UTILITIES ----------
+  function formatDateTime(dateObj) {
+    // returns consistent string like "08/04/2025, 14:35:22" (en-GB)
+    return dateObj.toLocaleString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  }
+
+  function getCurrentDateTime() {
+    return formatDateTime(new Date());
+  }
+
+  // add minutes to a Date safely
+  function addMinutesToDate(date, minutes) {
+    return new Date(date.getTime() + minutes * 60 * 1000);
+  }
+
+  // LIVE CLOCK
   function updateDateTime() {
     const now = new Date();
     const formatted = now.toLocaleString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second:'2-digit' });
@@ -419,7 +445,7 @@
   updateDateTime();
   setInterval(updateDateTime, 1000);
 
-  // ---------- LOCALSTORAGE for HISTORY ----------
+  // ---------- LOCAL STORAGE FOR HISTORY ----------
   let presenceRecords = [];
 
   function loadHistoryFromStorage() {
@@ -439,6 +465,16 @@
     updateStatistics();
   }
 
+  function escapeHtml(str) {
+    if(!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if(m === '&') return '&amp;';
+      if(m === '<') return '&lt;';
+      if(m === '>') return '&gt;';
+      return m;
+    });
+  }
+
   function renderHistory() {
     const historyDiv = document.getElementById('historyList');
     if(presenceRecords.length === 0) {
@@ -456,46 +492,31 @@
     `).join('');
   }
 
-  function escapeHtml(str) {
-    if(!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-      if(m === '&') return '&amp;';
-      if(m === '<') return '&lt;';
-      if(m === '>') return '&gt;';
-      return m;
-    });
-  }
-
   function updateStatistics() {
     const today = new Date().toISOString().slice(0,10);
     const todaysRecords = presenceRecords.filter(rec => rec.submitTimestamp?.startsWith(today));
-    const statsText = document.getElementById('statsText');
-    statsText.innerHTML = `📊 Total presences recorded today: ${todaysRecords.length}`;
-    
-    const anyActive = presenceRecords.some(rec => rec.signOutTime === 'Not checked out' || rec.signOutTime === '' || rec.signOutTime === null);
-    const activeStatus = document.getElementById('activeStatus');
-    if(anyActive) activeStatus.innerHTML = '⚠️ Some students have open check-in (no checkout)';
-    else activeStatus.innerHTML = '✅ All sessions closed today';
+    document.getElementById('statsText').innerHTML = `📊 Total presences recorded today: ${todaysRecords.length}`;
+    const anyOpen = presenceRecords.some(rec => rec.signOutTime === 'Not checked out' || rec.signOutTime === '' || rec.signOutTime === null);
+    if(anyOpen) document.getElementById('activeStatus').innerHTML = '⚠️ Some students have open check-in (no checkout)';
+    else document.getElementById('activeStatus').innerHTML = '✅ All sessions closed today';
   }
 
-  function getCurrentDateTime() {
-    return new Date().toLocaleString('en-GB', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
-  }
-
-  // CHECK-IN button
+  // ---------- AUTO CHECKOUT: 60 MIN AFTER CHECKIN ----------
   document.getElementById('checkInBtn').addEventListener('click', () => {
-    const inField = document.getElementById('signInTime');
-    const nowStr = getCurrentDateTime();
-    inField.value = nowStr;
-    showFeedback('✅ Check-in time set!', 'success');
+    const now = new Date();
+    const inDateTime = formatDateTime(now);
+    const outDateTime = formatDateTime(addMinutesToDate(now, 60));
+    
+    document.getElementById('signInTime').value = inDateTime;
+    document.getElementById('signOutTime').value = outDateTime;
+    showFeedback(`✅ Check-in: ${inDateTime} | Auto check-out set to +60 min (${outDateTime})`, 'success');
   });
 
-  // CHECK-OUT button
+  // Manual override for checkout (user can update checkout anytime)
   document.getElementById('checkOutBtn').addEventListener('click', () => {
-    const outField = document.getElementById('signOutTime');
-    const nowStr = getCurrentDateTime();
-    outField.value = nowStr;
-    showFeedback('🕒 Check-out time recorded!', 'success');
+    const outNow = getCurrentDateTime();
+    document.getElementById('signOutTime').value = outNow;
+    showFeedback(`🕒 Manual check-out override: ${outNow}`, 'success');
   });
 
   function showFeedback(message, type) {
@@ -503,27 +524,153 @@
     feedbackDiv.innerHTML = message;
     feedbackDiv.className = `feedback-message feedback-${type}`;
     setTimeout(() => {
-      feedbackDiv.innerHTML = '';
-      feedbackDiv.className = 'feedback-message';
-    }, 4000);
+      if(feedbackDiv.innerHTML === message) {
+        feedbackDiv.innerHTML = '';
+        feedbackDiv.className = 'feedback-message';
+      }
+    }, 4500);
   }
 
-  // Handle form submission
+  // ---------- DUAL FORMSPREE SUBMISSION (both required endpoints) ----------
+  // endpoints: https://formspree.io/f/mbdwwnjr  and https://formspree.io/f/mojrrkaq
+  const FORMSPREE_ENDPOINTS = [
+    'https://formspree.io/f/mbdwwnjr',
+    'https://formspree.io/f/mojrrkaq'
+  ];
+
+  async function sendToFormspree(url, formDataObj) {
+    // formDataObj is a FormData instance
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formDataObj,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        return { success: true, url };
+      } else {
+        const errorText = await response.text();
+        return { success: false, url, error: errorText };
+      }
+    } catch (err) {
+      return { success: false, url, error: err.message };
+    }
+  }
+
+  // Build FormData from current form values
+  function buildFormDataFromFields() {
+    const studentName = document.getElementById('studentName').value.trim();
+    const studentId = document.getElementById('studentId').value.trim();
+    const department = document.getElementById('department').value;
+    const level = document.getElementById('level').value;
+    const signInTime = document.getElementById('signInTime').value || 'Not checked in';
+    const signOutTime = document.getElementById('signOutTime').value || 'Not checked out';
+    const signature = document.getElementById('signatureName').value.trim();
+    const submissionTimestamp = new Date().toLocaleString();
+    
+    const fd = new FormData();
+    fd.append('Student Name', studentName);
+    fd.append('Student ID', studentId);
+    fd.append('Department', department);
+    fd.append('Level', level);
+    fd.append('SignInDateTime', signInTime);
+    fd.append('SignOutDateTime', signOutTime);
+    fd.append('SignatureName', signature);
+    fd.append('SubmissionTimestamp', submissionTimestamp);
+    // optional extra fields to identify mbac
+    fd.append('Source', 'MBAC_Daily_Presence');
+    return { fd, studentName, studentId, department, level, signInTime, signOutTime, signature, submissionTimestamp };
+  }
+
+  // redirect to an elegant thank you page (data URI with college theme)
+  function redirectToThankYou() {
+    const thankYouHTML = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Thank You | MBAC Presence</title>
+      <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body {
+          background: linear-gradient(145deg, #0b2b3b 0%, #154e5e 100%);
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+        }
+        .card {
+          background: white;
+          max-width: 600px;
+          border-radius: 48px;
+          padding: 40px 30px;
+          text-align: center;
+          box-shadow: 0 30px 40px rgba(0,0,0,0.3);
+          border: 1px solid #ffb34755;
+        }
+        .logo-circle {
+          background: #ffb347;
+          width: 80px;
+          height: 80px;
+          border-radius: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 38px;
+          font-weight: bold;
+          color: #0b2b3b;
+          margin: 0 auto 20px;
+          box-shadow: 0 8px 14px rgba(0,0,0,0.1);
+        }
+        h1 { color: #0b2b3b; margin-bottom: 12px; font-size: 2.2rem; }
+        p { color: #2c5a68; margin-bottom: 24px; font-size: 1.1rem; line-height: 1.5; }
+        .check-icon { font-size: 64px; color: #2a7f6e; margin: 20px 0; }
+        .btn-home {
+          background: #ffb347;
+          border: none;
+          padding: 12px 28px;
+          border-radius: 60px;
+          font-weight: bold;
+          font-size: 1rem;
+          cursor: pointer;
+          color: #0b2b3b;
+          transition: 0.2s;
+          text-decoration: none;
+          display: inline-block;
+        }
+        .btn-home:hover { transform: scale(1.02); background: #ffa01e; }
+        footer { margin-top: 35px; font-size: 0.75rem; color: #8ba9b2; }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <div class="logo-circle">MBAC</div>
+        <div class="check-icon"><i class="fas fa-check-circle"></i></div>
+        <h1>Presence Recorded!</h1>
+        <p>Your daily presence has been successfully submitted to both MBAC databases.<br> Thank you for maintaining academic integrity.</p>
+        <button class="btn-home" onclick="window.location.href=document.referrer || '/'"><i class="fas fa-arrow-left"></i> Return to Presence Form</button>
+        <footer>Malik Bin Anas College of West Africa — Excellence & Integrity</footer>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"><\/script>
+    </body>
+    </html>`;
+    // use data URI to redirect seamlessly
+    const encodedPage = encodeURIComponent(thankYouHTML);
+    window.location.href = `data:text/html,${encodedPage}`;
+  }
+
+  // Submit handler with dual submission + redirect
   const form = document.getElementById('presenceForm');
   
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Get form values
+    // basic validation
     const studentName = document.getElementById('studentName').value.trim();
     const studentId = document.getElementById('studentId').value.trim();
-    const department = document.getElementById('department').value;
-    const level = document.getElementById('level').value;
-    const signInTime = document.getElementById('signInTime').value;
-    const signOutTime = document.getElementById('signOutTime').value;
     const signature = document.getElementById('signatureName').value.trim();
     
-    // Validation
     if(!studentName) {
       showFeedback('❌ Student name is required!', 'error');
       document.getElementById('studentName').focus();
@@ -540,72 +687,79 @@
       return;
     }
     
-    // Create record for local history
+    // Ensure that if check-in missing but user wants to submit, we warn optional but not block? but we allow but better hint
+    const signInField = document.getElementById('signInTime').value;
+    if(!signInField) {
+      showFeedback('⚠️ Please click "Check-in" to set arrival time before submitting (auto OUT+60 min).', 'error');
+      return;
+    }
+    
+    // Build FormData and record data
+    const { fd, studentName: name, studentId: id, department, level, signInTime, signOutTime, signature: sig, submissionTimestamp } = buildFormDataFromFields();
+    
+    // 1) Save locally first (always)
     const newRecord = {
-      studentName: studentName,
-      studentId: studentId,
+      studentName: name,
+      studentId: id,
       department: department,
       level: level,
-      signInTime: signInTime || 'Not checked in',
-      signOutTime: signOutTime || 'Not checked out',
-      signature: signature,
-      submitTimestamp: new Date().toLocaleString()
+      signInTime: signInTime,
+      signOutTime: signOutTime,
+      signature: sig,
+      submitTimestamp: submissionTimestamp
     };
-    
     presenceRecords.push(newRecord);
     saveToLocalStorage();
     
-    // Prepare data for Formspree
-    const formData = new FormData();
-    formData.append('Student Name', studentName);
-    formData.append('Student ID', studentId);
-    formData.append('Department', department);
-    formData.append('Level', level);
-    formData.append('SignInDateTime', signInTime || 'Not recorded');
-    formData.append('SignOutDateTime', signOutTime || 'Not recorded');
-    formData.append('SignatureName', signature);
-    formData.append('SubmissionTimestamp', newRecord.submitTimestamp);
+    // Disable submit button temporarily to avoid double submission
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting to both servers...';
     
-    try {
-      // Send to Formspree
-      const response = await fetch('https://formspree.io/f/xeennyjr', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-      
-      if(response.ok) {
-        showFeedback('✅ Presence saved to database & local storage successfully!', 'success');
-        // Clear only the time fields and signature, keep student info for next entry
-        document.getElementById('signInTime').value = '';
-        document.getElementById('signOutTime').value = '';
-        document.getElementById('signatureName').value = '';
-        // Optional: clear name/id if you want fresh entry each time
-        // document.getElementById('studentName').value = '';
-        // document.getElementById('studentId').value = '';
-      } else {
-        const errorData = await response.json();
-        console.error('Formspree error:', errorData);
-        showFeedback('⚠️ Saved locally only. Formspree error: ' + (errorData.error || response.statusText), 'error');
-      }
-    } catch(err) {
-      console.error('Network error:', err);
-      showFeedback('⚠️ Network error. Data saved locally in browser history.', 'error');
+    // 2) Send to BOTH Formspree endpoints
+    const promises = FORMSPREE_ENDPOINTS.map(endpoint => sendToFormspree(endpoint, fd));
+    
+    const results = await Promise.allSettled(promises);
+    
+    // Evaluate results
+    const succeeded = results.filter(r => r.status === 'fulfilled' && r.value.success === true).length;
+    const failed = results.length - succeeded;
+    
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnText;
+    
+    if (succeeded === 2) {
+      showFeedback('🎉 Success! Presence submitted to both MBAC databases. Redirecting to thank you page...', 'success');
+    } else if (succeeded === 1) {
+      showFeedback(`⚠️ Partial success: submitted to 1 of 2 databases. Data saved locally. Redirecting...`, 'success');
+    } else {
+      showFeedback(`❌ Could not reach any Formspree endpoint. Data stored locally only. Still redirecting to summary.`, 'error');
     }
+    
+    // Clear sensitive form fields (keep name/ID for convenience? but signature and times reset)
+    document.getElementById('signInTime').value = '';
+    document.getElementById('signOutTime').value = '';
+    document.getElementById('signatureName').value = '';
+    // optional: keep student name/id for next entry? we keep them so user doesn't retype but reset time fields.
+    // Provide small delay before redirect to let feedback appear
+    setTimeout(() => {
+      redirectToThankYou();
+    }, 1600);
   });
   
-  // Subscription button
+  // Newsletter subscription (non-critical)
   document.getElementById('subBtn').addEventListener('click', () => {
     const email = document.getElementById('subEmail').value.trim();
     if(email && email.includes('@') && email.includes('.')) {
-      alert(`Thank you ${email}! You'll receive MBAC updates.`);
+      alert(`✨ Thanks ${email}! You'll receive MBAC updates.`);
       document.getElementById('subEmail').value = '';
     } else {
       alert('Please enter a valid email address (e.g., name@example.com)');
     }
   });
   
-  // Load existing data on page load
+  // initial load history
   loadHistoryFromStorage();
 </script>
 </body>
