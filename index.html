@@ -1,756 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>MBAC Student Daily Presence | 5h / 50min Checkout Options</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malik bin Anas College of West Africa — Daily Presence</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
+    body { background: linear-gradient(145deg,#eef2f7,#d9e0eb); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:16px; }
 
-    body {
-      background: #f0f7ff;
-      padding: 20px;
-    }
+    /* ================= HEADER ================= */
+    .site-header { width:1200px; max-width:100%; margin-bottom:16px; background:linear-gradient(120deg,#1e3a5f,#2b4b77); border-radius:30px; box-shadow:0 20px 40px -15px rgba(10,25,50,0.4); overflow:hidden; border:1px solid rgba(255,255,255,0.15); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; padding:18px 28px; gap:20px; flex-wrap:wrap; }
+    .brand { display:flex; align-items:center; gap:16px; }
+    .logo { width:64px; height:64px; border-radius:20px; background:linear-gradient(135deg,#f5b942,#d98c00); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:22px; letter-spacing:-1px; color:#1e2f4e; box-shadow:0 8px 18px -6px rgba(0,0,0,0.35),inset 0 -3px 0 rgba(0,0,0,0.15); position:relative; overflow:hidden; }
+    .logo::after { content:''; position:absolute; top:-30%; left:-30%; width:60%; height:60%; background:rgba(255,255,255,0.35); transform:rotate(45deg); }
+    .logo-text { font-family:'Georgia',serif; font-weight:900; font-size:22px; color:#fff; }
+    .brand-titles { display:flex; flex-direction:column; line-height:1.15; }
+    .college-name { font-size:22px; font-weight:700; color:#fff; letter-spacing:-0.3px; }
+    .college-sub { font-size:13px; font-weight:500; color:#b8cde3; letter-spacing:1.5px; text-transform:uppercase; margin-top:2px; }
+    .header-info { display:flex; align-items:center; gap:18px; }
+    .info-chip { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); padding:8px 16px; border-radius:30px; border:1px solid rgba(255,255,255,0.12); color:#dfe9f4; font-size:13px; }
+    .info-chip i { color:#f5b942; }
 
-    .app-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 32px;
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
-      overflow: hidden;
-    }
+    /* ================= APP ================= */
+    .app-container { width:1200px; max-width:100%; background:rgba(255,255,255,0.78); backdrop-filter:blur(8px); border-radius:40px; box-shadow:0 25px 50px -10px rgba(0,20,40,0.3); overflow:hidden; border:1px solid rgba(255,255,255,0.6); margin-bottom:16px; }
 
-    .navbar {
-      background: linear-gradient(135deg, #0b2b3b 0%, #123e4e 100%);
-      padding: 1rem 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      border-bottom: 3px solid #ffb347;
-    }
+    /* LOGIN */
+    .login-screen { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 32px; min-height:500px; }
+    .login-card { background:#fff; max-width:420px; width:100%; padding:40px 32px; border-radius:32px; box-shadow:0 15px 30px -10px rgba(0,30,60,0.2); border:1px solid rgba(255,255,255,0.8); }
+    .login-card h2 { font-size:28px; font-weight:600; color:#1e2f4e; margin-bottom:8px; display:flex; align-items:center; gap:12px; }
+    .login-card h2 i { color:#3a6ea5; font-size:30px; }
+    .login-card p { color:#5b6f8c; margin-bottom:28px; font-size:15px; border-left:4px solid #3a6ea5; padding:10px 16px; background:#f0f6fe; border-radius:0 12px 12px 0; }
+    .input-group { margin-bottom:22px; }
+    .input-group label { display:block; font-size:14px; font-weight:500; color:#2c3e5c; margin-bottom:8px; }
+    .input-group input { width:100%; padding:14px 18px; border:1.5px solid #d4e0f0; border-radius:18px; font-size:16px; background:#f9fcff; outline:none; color:#1e2f4e; transition:0.2s; }
+    .input-group input:focus { border-color:#3a6ea5; box-shadow:0 0 0 4px rgba(58,110,165,0.15); background:#fff; }
+    .btn-login { width:100%; padding:16px; background:#1e3a5f; border:none; border-radius:30px; color:#fff; font-size:18px; font-weight:600; cursor:pointer; transition:0.25s; margin-top:12px; display:flex; align-items:center; justify-content:center; gap:12px; box-shadow:0 10px 20px -8px #1e3a5f80; }
+    .btn-login:hover { background:#2b4b77; transform:scale(1.02); }
+    .btn-login:disabled { opacity:0.6; cursor:not-allowed; }
+    .error-msg { color:#c0392b; font-size:14px; margin-top:14px; text-align:center; min-height:20px; font-weight:500; }
+    .success-msg { color:#1e8449; }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
+    /* DASHBOARD */
+    .dashboard { display:none; grid-template-columns:1fr 340px; min-height:650px; }
+    .form-section { padding:32px 32px 32px 40px; background:#fff; border-right:1px solid #e2ebf5; display:flex; flex-direction:column; }
+    .header-welcome { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+    .header-welcome h2 { font-size:26px; font-weight:600; color:#1e2f4e; }
+    .header-welcome h2 i { color:#3a6ea5; margin-right:10px; }
+    .logout-btn { background:#eef4fc; border:1px solid #d4e2f2; padding:10px 22px; border-radius:30px; font-size:14px; font-weight:500; color:#1e3a5f; cursor:pointer; display:flex; align-items:center; gap:8px; }
+    .logout-btn:hover { background:#dbe7f5; }
 
-    .logo {
-      background: #ffb347;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 24px;
-      color: #0b2b3b;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+    .sign-form { display:flex; flex-direction:column; gap:18px; flex:1; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .form-field { display:flex; flex-direction:column; gap:6px; }
+    .form-field label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#5e7392; }
+    .form-field input, .form-field select { padding:12px 16px; border:1.5px solid #d4e0f0; border-radius:16px; font-size:15px; background:#f9fcff; outline:none; color:#1e2f4e; }
+    .form-field input:focus, .form-field select:focus { border-color:#3a6ea5; background:#fff; box-shadow:0 0 0 3px rgba(58,110,165,0.12); }
+    .form-field input:read-only { background:#eef3fa; color:#4b6589; border-color:#cad9ec; }
 
-    .college-name h1 {
-      font-size: 1.5rem;
-      color: white;
-      letter-spacing: 1px;
-    }
+    .signature-area { display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+    .signature-label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#5e7392; }
+    .signature-box { display:flex; align-items:center; background:#f6faff; border-radius:20px; padding:6px 6px 6px 20px; border:1.5px solid #d4e0f0; }
+    .signature-box input { flex:1; border:none; background:transparent; padding:14px 0; font-size:16px; outline:none; color:#1e2f4e; font-style:italic; }
+    .signature-box input::placeholder { color:#9bb1cc; font-style:normal; }
 
-    .college-name p {
-      font-size: 0.75rem;
-      color: #ffd966;
-    }
+    .btn-sign { background:#1e3a5f; color:#fff; border:none; padding:16px 32px; border-radius:30px; font-size:18px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; gap:14px; cursor:pointer; margin-top:10px; box-shadow:0 12px 22px -10px #1e3a5f; width:fit-content; min-width:220px; }
+    .btn-sign:hover { background:#2b4b77; transform:translateY(-2px); }
+    .btn-sign:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
 
-    .datetime {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-      padding: 8px 18px;
-      border-radius: 60px;
-      color: white;
-      font-weight: 500;
-      font-size: 0.9rem;
-      text-align: center;
-    }
+    /* SIDEBAR */
+    .sidebar { background:#f2f7fe; padding:32px 22px; display:flex; flex-direction:column; gap:24px; border-left:1px solid #e0eaf5; overflow-y:auto; max-height:750px; }
+    .sidebar h3 { font-size:18px; font-weight:600; color:#1e2f4e; display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+    .sidebar h3 i { color:#3a6ea5; font-size:19px; }
+    .stat-card { background:#fff; border-radius:24px; padding:18px 20px; box-shadow:0 8px 18px -8px rgba(30,50,80,0.15); border:1px solid #e7eff9; }
+    .stat-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px dashed #dbe6f2; }
+    .stat-row:last-child { border-bottom:none; }
+    .stat-label { font-size:14px; color:#4d627d; display:flex; align-items:center; gap:10px; }
+    .stat-label i { width:20px; color:#3a6ea5; }
+    .stat-value { font-weight:700; font-size:16px; color:#1e2f4e; background:#e9f0fa; padding:6px 14px; border-radius:40px; }
+    .attendance-progress { margin-top:14px; background:#e2ecf9; border-radius:30px; height:12px; overflow:hidden; }
+    .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,#3a6ea5,#5d9bdf); border-radius:30px; transition:width 0.4s; }
+    .percentage-text { text-align:right; font-size:13px; font-weight:600; color:#3a6ea5; margin-top:6px; }
+    .recent-list { list-style:none; margin-top:8px; }
+    .recent-list li { font-size:13px; padding:10px 0; border-bottom:1px solid #e4edf8; display:flex; justify-content:space-between; color:#3a5375; }
+    .recent-list li:last-child { border-bottom:none; }
+    .recent-list .date-badge { font-weight:600; color:#1e3a5f; }
+    .note { font-size:12.5px; color:#6e86a5; background:#e4eefa; border-radius:20px; padding:10px 16px; text-align:center; }
 
-    .dashboard {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      padding: 28px 24px;
-      background: #fefefe;
-    }
+    /* NEW: GRADES SECTION */
+    .grades-card { background:#fff; border-radius:24px; padding:18px 20px; box-shadow:0 8px 18px -8px rgba(30,50,80,0.15); border:1px solid #e7eff9; }
+    .grades-card h4 { font-size:14px; color:#1e2f4e; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .grades-card h4 i { color:#6c5ce7; }
+    .grades-list { list-style:none; }
+    .grades-list li { padding:10px 0; border-bottom:1px solid #f0f4fa; font-size:13px; }
+    .grades-list li:last-child { border-bottom:none; }
+    .grade-item { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .grade-module { color:#33425e; font-weight:600; flex:1; }
+    .grade-badge { font-weight:800; font-size:13px; padding:3px 10px; border-radius:8px; }
+    .grade-badge.a { background:#e0f7e9; color:#1e8449; }
+    .grade-badge.b { background:#e3efff; color:#2b7de9; }
+    .grade-badge.c { background:#fff1d8; color:#b26b00; }
+    .grade-badge.f { background:#ffe3e3; color:#c0392b; }
+    .grade-meta { font-size:11px; color:#8aa4c1; margin-top:3px; }
+    .grades-empty { text-align:center; padding:14px; color:#9bb1cc; font-size:12.5px; font-style:italic; }
+    .grades-refresh { background:none; border:none; color:#3a6ea5; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px; padding:0; margin-bottom:8px; }
+    .grades-refresh:hover { color:#1e3a5f; }
 
-    .form-section {
-      flex: 2;
-      min-width: 280px;
-      background: #ffffff;
-      border-radius: 28px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-      border: 1px solid #e9edf2;
-    }
+    .hidden { display:none !important; }
 
-    .history-section {
-      flex: 1.5;
-      min-width: 300px;
-      background: #f9fafc;
-      border-radius: 28px;
-      padding: 20px;
-      border: 1px solid #eef2f6;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    }
+    /* toast */
+    .toast { position:fixed; bottom:30px; right:30px; background:#1e3a5f; color:#fff; padding:14px 22px; border-radius:16px; box-shadow:0 10px 30px -8px rgba(0,20,60,0.4); font-size:15px; opacity:0; transform:translateY(20px); transition:0.3s; pointer-events:none; z-index:9999; max-width:340px; }
+    .toast.show { opacity:1; transform:translateY(0); }
+    .toast.error { background:#c0392b; }
+    .toast.success { background:#1e8449; }
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: #0b2b3b;
-      border-left: 5px solid #ffb347;
-      padding-left: 14px;
-    }
+    /* ================= FOOTER ================= */
+    .site-footer { width:1200px; max-width:100%; background:linear-gradient(160deg,#14263e,#1e3a5f); border-radius:40px; box-shadow:0 25px 50px -15px rgba(0,20,50,0.5); color:#d6e2f0; padding:40px 36px 26px; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px; }
+    .footer-grid { display:grid; grid-template-columns:1.3fr 1fr 1.1fr 1.2fr; gap:34px; }
+    .footer-col h4 { font-size:15px; font-weight:700; color:#f5b942; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:9px; }
+    .footer-col h4 i { font-size:16px; }
+    .footer-col p, .footer-col li, .footer-col a { font-size:14px; color:#b8cde3; line-height:1.65; text-decoration:none; }
+    .footer-col a:hover { color:#f5b942; }
+    .contact-row { display:flex; align-items:center; gap:10px; padding:7px 0; font-size:14px; color:#cddff0; }
+    .contact-row i { width:18px; color:#f5b942; text-align:center; }
+    .contact-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+    .contact-btn { display:flex; align-items:center; justify-content:center; gap:9px; padding:11px 12px; border-radius:14px; font-size:13px; font-weight:600; cursor:pointer; text-decoration:none; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.05); color:#e8f1fa; transition:all 0.22s; }
+    .contact-btn i { font-size:16px; }
+    .contact-btn:hover { transform:translateY(-2px); background:rgba(255,255,255,0.12); color:#fff; }
+    .contact-btn.whatsapp:hover { background:#25D366; border-color:#25D366; }
+    .contact-btn.phone:hover { background:#2b7de9; border-color:#2b7de9; }
+    .contact-btn.message:hover { background:#6c5ce7; border-color:#6c5ce7; }
+    .contact-btn.sms:hover { background:#f39c12; border-color:#f39c12; color:#1e2f4e; }
+    .programs-list, .events-list { list-style:none; }
+    .programs-list li, .events-list li { display:flex; align-items:flex-start; gap:10px; padding:8px 0; border-bottom:1px dashed rgba(255,255,255,0.08); font-size:14px; color:#c7d9ec; }
+    .programs-list li:last-child, .events-list li:last-child { border-bottom:none; }
+    .programs-list li i, .events-list li i { color:#f5b942; margin-top:3px; font-size:13px; flex-shrink:0; }
+    .event-date { display:inline-block; background:rgba(245,185,66,0.18); color:#f5b942; font-size:11px; font-weight:700; padding:2px 8px; border-radius:8px; margin-right:6px; }
+    .event-title { display:block; color:#e2ecf7; font-weight:500; }
+    .event-meta { font-size:12px; color:#8aa4c1; margin-top:2px; }
+    .dev-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:16px 18px; }
+    .dev-head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    .dev-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#f5b942,#d98c00); display:flex; align-items:center; justify-content:center; font-weight:800; color:#1e2f4e; font-size:18px; }
+    .dev-name { color:#fff; font-weight:700; font-size:15px; }
+    .dev-role { color:#8aa4c1; font-size:12px; margin-top:1px; }
+    .dev-links { display:flex; flex-direction:column; gap:7px; }
+    .dev-links a { display:flex; align-items:center; gap:9px; font-size:13px; color:#cddff0; text-decoration:none; padding:4px 0; }
+    .dev-links a i { width:16px; color:#f5b942; font-size:13px; text-align:center; }
+    .dev-links a:hover { color:#f5b942; }
+    .footer-bottom { margin-top:32px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:#8aa4c1; }
+    .footer-bottom .brand-mini { display:flex; align-items:center; gap:10px; color:#b8cde3; }
+    .footer-bottom .logo-mini { width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,#f5b942,#d98c00); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:#1e2f4e; }
 
-    .form-group {
-      margin-bottom: 18px;
+    @media (max-width:900px) {
+      .dashboard { grid-template-columns:1fr; }
+      .sidebar { border-left:none; border-top:1px solid #e0eaf5; max-height:none; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .header-info { display:none; }
     }
-
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 6px;
-      color: #1e3b44;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #cfdfed;
-      border-radius: 20px;
-      font-size: 0.95rem;
-      transition: 0.2s;
-      background: white;
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      border-color: #ffb347;
-      box-shadow: 0 0 0 3px rgba(255,180,71,0.2);
-    }
-
-    .info-hint {
-      font-size: 0.7rem;
-      color: #5f7f6e;
-      margin-top: 4px;
-      margin-left: 12px;
-    }
-
-    .btn {
-      background: #0b2b3b;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-top: 8px;
-      width: 100%;
-      font-size: 1rem;
-    }
-
-    .btn-checkin {
-      background: #2a7f6e;
-    }
-    .btn-checkout-early {
-      background: #c96f0e;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.05);
-    }
-
-    .history-list {
-      max-height: 400px;
-      overflow-y: auto;
-      margin-top: 12px;
-    }
-
-    .record-card {
-      background: white;
-      padding: 12px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      border-left: 4px solid #ffb347;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      font-size: 0.85rem;
-    }
-
-    .stats-preview {
-      background: #eef3fa;
-      border-radius: 24px;
-      padding: 15px;
-      margin-top: 20px;
-    }
-
-    footer {
-      background: #0a1c24;
-      color: #ddd;
-      padding: 30px 24px 20px;
-      font-size: 0.85rem;
-    }
-
-    .footer-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 30px;
-      margin-bottom: 25px;
-    }
-
-    .footer-col {
-      min-width: 150px;
-    }
-
-    .footer-col h4 {
-      color: #ffb347;
-      margin-bottom: 12px;
-    }
-
-    .social-icons a {
-      color: #ffb347;
-      margin-right: 18px;
-      font-size: 1.5rem;
-      transition: 0.2s;
-    }
-
-    .subscription-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .subscription-form input {
-      flex: 2;
-      padding: 10px;
-      border-radius: 50px;
-      border: none;
-    }
-
-    .sub-btn {
-      background: #ffb347;
-      border: none;
-      padding: 0 15px;
-      border-radius: 50px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .copyright {
-      text-align: center;
-      border-top: 1px solid #2c4b56;
-      padding-top: 20px;
-      margin-top: 10px;
-    }
-
-    .feedback-message {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: 500;
-    }
-
-    .feedback-success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-
-    .feedback-error {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-
-    @media (max-width: 780px) {
-      .navbar {
-        flex-direction: column;
-        text-align: center;
-      }
+    @media (max-width:560px) {
+      .footer-grid { grid-template-columns:1fr; }
+      .college-name { font-size:18px; }
+      .contact-actions { grid-template-columns:1fr; }
+      .form-row { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
-<div class="app-container">
-  <div class="navbar">
-    <div class="logo-area">
-      <div class="logo">MBAC</div>
-      <div class="college-name">
-        <h1>Malik Bin Anas College<br><span style="font-size:0.8rem;">of West Africa</span></h1>
-        <p>Excellence & Integrity</p>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo"><span class="logo-text">MbAC</span></div>
+      <div class="brand-titles">
+        <span class="college-name">Malik bin Anas College of West Africa</span>
+        <span class="college-sub">Excellence · Integrity · Knowledge</span>
       </div>
     </div>
-    <div class="datetime" id="liveDateTime"></div>
+    <div class="header-info">
+      <span class="info-chip"><i class="fas fa-graduation-cap"></i> Daily Presence Portal</span>
+      <span class="info-chip"><i class="fas fa-shield-halved"></i> Secure Sign-In</span>
+    </div>
+  </div>
+</header>
+
+<div class="app-container" id="appContainer">
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <h2><i class="fas fa-id-card"></i> Student Login</h2>
+      <p>Enter your name and ID number to access the daily presence form.</p>
+      <div class="input-group">
+        <label for="loginName">Full Name</label>
+        <input type="text" id="loginName" placeholder="e.g. Alex Johnson" autocomplete="off" />
+      </div>
+      <div class="input-group">
+        <label for="loginId">ID Number</label>
+        <input type="text" id="loginId" placeholder="e.g. STU-2025-001" autocomplete="off" />
+      </div>
+      <button class="btn-login" id="loginBtn"><i class="fas fa-arrow-right-to-bracket"></i> Login</button>
+      <div class="error-msg" id="loginError"></div>
+    </div>
   </div>
 
-  <div class="dashboard">
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard">
     <div class="form-section">
-      <h2><i class="fas fa-user-check"></i> Daily Presence Form</h2>
-      <form id="presenceForm">
-        <div class="form-group">
-          <label>Student Name *</label>
-          <input type="text" name="Student Name" id="studentName" placeholder="Full name" required>
+      <div class="header-welcome">
+        <h2><i class="fas fa-user-check"></i> Daily Presence</h2>
+        <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+
+      <form class="sign-form" id="presenceForm">
+        <div class="form-row">
+          <div class="form-field"><label>Full Name</label><input type="text" id="studentName" readonly /></div>
+          <div class="form-field"><label>ID Number</label><input type="text" id="studentId" readonly /></div>
         </div>
-        <div class="form-group">
-          <label>Student ID *</label>
-          <input type="text" name="Student ID" id="studentId" placeholder="MBAC-XXXX" required>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Department</label>
+            <select id="department">
+              <option value="Computer Science">Computer Science</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Business">Business</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Biology">Biology</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Year</label>
+            <select id="year">
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Department</label>
-          <select name="Department" id="department">
-            <option>Computer Science</option>
-            <option>Arabic & Islamic</option>
-            <option>Public Health</option>
-            <option>H.R.M</option>
-            <option>Nursing</option>
-            <option>TechVoc</option>
-          </select>
+        <div class="form-field"><label>Date &amp; Time (auto-updated)</label><input type="text" id="dateTimeDisplay" readonly /></div>
+        <div class="signature-area">
+          <span class="signature-label"><i class="fas fa-pen"></i> Signature</span>
+          <div class="signature-box"><input type="text" id="signatureInput" placeholder="Type your full name as signature" autocomplete="off" /></div>
         </div>
-        <div class="form-group">
-          <label>Level</label>
-          <select name="Level" id="level">
-            <option>Year 1</option><option>Year 2</option><option>Year 3</option><option>Year 4</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>📥 Check-in Time (IN) *</label>
-          <input type="text" name="SignInDateTime" id="signInTime" readonly placeholder="Click 'Check-in' button">
-          <div class="info-hint"><i class="fas fa-info-circle"></i> Sets OUT to +5 hours automatically</div>
-        </div>
-        <div class="form-group">
-          <label>📤 Check-out Time (OUT)</label>
-          <input type="text" name="SignOutDateTime" id="signOutTime" readonly placeholder="Auto 5h or early 50min">
-          <div class="info-hint"><i class="fas fa-clock"></i> Use early button for 50 min after IN</div>
-        </div>
-        <div class="form-group">
-          <label>Signature / Name *</label>
-          <input type="text" name="SignatureName" id="signatureName" placeholder="Type your full name as signature" required>
-        </div>
-        
-        <div style="display: flex; gap: 12px;">
-          <button type="button" class="btn btn-checkin" id="checkInBtn"><i class="fas fa-sign-in-alt"></i> Check-in (IN + 5h OUT)</button>
-          <button type="button" class="btn btn-checkout-early" id="earlyOutBtn"><i class="fas fa-hourglass-half"></i> Early Check-out (IN + 50 min)</button>
-        </div>
-        <button type="submit" class="btn" style="background:#ffb347; color:#0b2b3b; margin-top: 15px;"><i class="fas fa-save"></i> Submit Presence → Dual Databases</button>
+        <button type="submit" class="btn-sign" id="signBtn"><i class="fas fa-check-circle"></i> Sign In</button>
       </form>
-      <div id="formFeedback" class="feedback-message"></div>
     </div>
 
-    <div class="history-section">
-      <h2><i class="fas fa-history"></i> Daily Presence History</h2>
-      <div id="historyList" class="history-list">
-        <p style="color:gray;">No records yet. Submit presence to see history.</p>
+    <aside class="sidebar">
+      <h3><i class="fas fa-chart-simple"></i> Attendance Stats</h3>
+      <div class="stat-card">
+        <div class="stat-row"><span class="stat-label"><i class="fas fa-calendar-check"></i> Total days</span><span class="stat-value" id="totalDays">0</span></div>
+        <div class="stat-row"><span class="stat-label"><i class="fas fa-user-graduate"></i> Present days</span><span class="stat-value" id="presentDays">0</span></div>
+        <div class="stat-row"><span class="stat-label"><i class="fas fa-clock"></i> Last sign-in</span><span class="stat-value" id="lastSignIn" style="font-size:13px;">—</span></div>
+        <div class="attendance-progress"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="percentage-text" id="percentageText">0%</div>
       </div>
-      <div class="stats-preview" id="statsPanel">
-        <h3><i class="fas fa-chart-line"></i> Today's Stats / Review</h3>
-        <p id="statsText">Total presences today: 0</p>
-        <p id="activeStatus">No active session</p>
+
+      <!-- NEW: GRADES SECTION -->
+      <div class="grades-card">
+        <h4><i class="fas fa-award"></i> My Grades</h4>
+        <button class="grades-refresh" id="refreshGradesBtn"><i class="fas fa-rotate-right"></i> Refresh grades</button>
+        <ul class="grades-list" id="gradesList">
+          <li class="grades-empty">No grades published yet.</li>
+        </ul>
       </div>
-    </div>
+
+      <div>
+        <h3><i class="fas fa-list-ul"></i> Recent sign-ins</h3>
+        <ul class="recent-list" id="recentList">
+          <li style="color:#8aa1be; justify-content:center;">No records yet</li>
+        </ul>
+      </div>
+      <div class="note"><i class="fas fa-circle-info"></i> Each sign-in counts for today.</div>
+    </aside>
   </div>
-
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p><i class="fas fa-phone-alt"></i>+232-79-088-528 / +232-79-984-545 / +232-78-882-227</p>
-        <p><i class="fas fa-envelope"></i>mbacofwa26@gmail.com</p>
-        <p><i class="fas fa-map-marker-alt"></i>No. 2e Rokupa Estate, Rokupa, Freetown</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <p><i class="fas fa-calendar-alt"></i> Events</p>
-        <p><i class="fas fa-file-contract"></i> Policies</p>
-        <p><i class="fas fa-headset"></i> Helpdesk</p>
-      </div>
-      <div class="footer-col">
-        <h4>Follow Us</h4>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <h4 style="margin-top:12px;">Newsletter</h4>
-        <div class="subscription-form">
-          <input type="email" id="subEmail" placeholder="Your email">
-          <button class="sub-btn" id="subBtn">Subscribe</button>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      &copy; 2025 Malik Bin Anas College of West Africa | Integrity • Knowledge • Service
-    </div>
-  </footer>
 </div>
 
-<script>
-  // ---------- FORMATTING & UTILITIES ----------
-  function formatDateTime(dateObj) {
-    return dateObj.toLocaleString('en-GB', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    });
-  }
-
-  function getCurrentDateTime() {
-    return formatDateTime(new Date());
-  }
-
-  function addMinutesToDate(date, minutes) {
-    return new Date(date.getTime() + minutes * 60 * 1000);
-  }
-
-  // Parse stored date string (en-GB format: "dd/MM/yyyy, HH:mm:ss") into Date object
-  function parseDateTimeString(dateStr) {
-    if (!dateStr || dateStr === 'Not checked in') return null;
-    // example: "08/04/2025, 14:35:22"
-    let [datePart, timePart] = dateStr.split(', ');
-    let [day, month, year] = datePart.split('/');
-    let [hour, minute, second] = timePart.split(':');
-    return new Date(year, month-1, day, hour, minute, second);
-  }
-
-  // LIVE CLOCK
-  function updateDateTime() {
-    const now = new Date();
-    const formatted = now.toLocaleString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second:'2-digit' });
-    document.getElementById('liveDateTime').innerHTML = `<i class="far fa-calendar-alt"></i> ${formatted}`;
-  }
-  updateDateTime();
-  setInterval(updateDateTime, 1000);
-
-  // ---------- LOCAL STORAGE FOR HISTORY ----------
-  let presenceRecords = [];
-
-  function loadHistoryFromStorage() {
-    const stored = localStorage.getItem('mbac_presence_history');
-    if(stored) {
-      presenceRecords = JSON.parse(stored);
-    } else {
-      presenceRecords = [];
-    }
-    renderHistory();
-    updateStatistics();
-  }
-
-  function saveToLocalStorage() {
-    localStorage.setItem('mbac_presence_history', JSON.stringify(presenceRecords));
-    renderHistory();
-    updateStatistics();
-  }
-
-  function escapeHtml(str) {
-    if(!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-      if(m === '&') return '&amp;';
-      if(m === '<') return '&lt;';
-      if(m === '>') return '&gt;';
-      return m;
-    });
-  }
-
-  function renderHistory() {
-    const historyDiv = document.getElementById('historyList');
-    if(presenceRecords.length === 0) {
-      historyDiv.innerHTML = '<p style="color:gray;">✨ No presence records yet. Fill form and submit.</p>';
-      return;
-    }
-    historyDiv.innerHTML = presenceRecords.slice().reverse().map(rec => `
-      <div class="record-card">
-        <strong>${escapeHtml(rec.studentName)}</strong> (${escapeHtml(rec.studentId)})<br>
-        Dept: ${escapeHtml(rec.department)} | Level: ${escapeHtml(rec.level)}<br>
-        🕒 IN: ${escapeHtml(rec.signInTime || '--')} &nbsp; OUT: ${escapeHtml(rec.signOutTime || '--')}<br>
-        ✍️ Sig: ${escapeHtml(rec.signature)}<br>
-        <small>Submitted: ${escapeHtml(rec.submitTimestamp)}</small>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4><i class="fas fa-address-card"></i> Contact Us</h4>
+      <div class="contact-row"><i class="fas fa-location-dot"></i> 12 Knowledge Avenue, Accra, Ghana</div>
+      <div class="contact-row"><i class="fas fa-envelope"></i> info@mbac.edu.gh</div>
+      <div class="contact-row"><i class="fas fa-phone"></i> +233 20 123 4567</div>
+      <div class="contact-row"><i class="fas fa-clock"></i> Mon – Fri · 8:00 AM – 5:00 PM</div>
+      <div class="contact-actions">
+        <a class="contact-btn whatsapp" href="https://wa.me/233201234567?text=Hello%20MbAC" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="contact-btn phone" href="tel:+233201234567"><i class="fas fa-phone"></i> Call</a>
+        <a class="contact-btn message" href="https://wa.me/233201234567?text=Message" target="_blank" rel="noopener"><i class="fas fa-comment-dots"></i> Message</a>
+        <a class="contact-btn sms" href="sms:+233201234567?body=Hello%20MbAC"><i class="fas fa-comment-sms"></i> SMS</a>
       </div>
-    `).join('');
-  }
-
-  function updateStatistics() {
-    const today = new Date().toISOString().slice(0,10);
-    const todaysRecords = presenceRecords.filter(rec => rec.submitTimestamp?.startsWith(today));
-    document.getElementById('statsText').innerHTML = `📊 Total presences recorded today: ${todaysRecords.length}`;
-    const anyOpen = presenceRecords.some(rec => rec.signOutTime === 'Not checked out' || rec.signOutTime === '' || rec.signOutTime === null);
-    if(anyOpen) document.getElementById('activeStatus').innerHTML = '⚠️ Some students have open check-in (no checkout)';
-    else document.getElementById('activeStatus').innerHTML = '✅ All sessions closed today';
-  }
-
-  // ---------- CHECK-IN: sets OUT to +5 hours (300 minutes) ----------
-  document.getElementById('checkInBtn').addEventListener('click', () => {
-    const now = new Date();
-    const inDateTime = formatDateTime(now);
-    const outDateTime = formatDateTime(addMinutesToDate(now, 300)); // 5 hours
-    
-    document.getElementById('signInTime').value = inDateTime;
-    document.getElementById('signOutTime').value = outDateTime;
-    showFeedback(`✅ Check-in: ${inDateTime} | Auto check-out set to +5 hours (${outDateTime})`, 'success');
-  });
-
-  // ---------- EARLY CHECK-OUT: sets OUT to IN + 50 minutes ----------
-  document.getElementById('earlyOutBtn').addEventListener('click', () => {
-    const signInValue = document.getElementById('signInTime').value;
-    if (!signInValue || signInValue === '') {
-      showFeedback('❌ Please set check-in time first using the "Check-in" button.', 'error');
-      return;
-    }
-    const inDate = parseDateTimeString(signInValue);
-    if (!inDate) {
-      showFeedback('❌ Invalid check-in time format. Please redo check-in.', 'error');
-      return;
-    }
-    const outDate = addMinutesToDate(inDate, 50); // 50 minutes after IN
-    const outDateTime = formatDateTime(outDate);
-    document.getElementById('signOutTime').value = outDateTime;
-    showFeedback(`🕒 Early checkout set to 50 minutes after IN: ${outDateTime}`, 'success');
-  });
-
-  function showFeedback(message, type) {
-    const feedbackDiv = document.getElementById('formFeedback');
-    feedbackDiv.innerHTML = message;
-    feedbackDiv.className = `feedback-message feedback-${type}`;
-    setTimeout(() => {
-      if(feedbackDiv.innerHTML === message) {
-        feedbackDiv.innerHTML = '';
-        feedbackDiv.className = 'feedback-message';
-      }
-    }, 4500);
-  }
-
-  // ---------- DUAL FORMSPREE SUBMISSION ----------
-  const FORMSPREE_ENDPOINTS = [
-    'https://formspree.io/f/mbdwwnjr',
-    'https://formspree.io/f/mojrrkaq'
-  ];
-
-  async function sendToFormspree(url, formDataObj) {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formDataObj,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        return { success: true, url };
-      } else {
-        const errorText = await response.text();
-        return { success: false, url, error: errorText };
-      }
-    } catch (err) {
-      return { success: false, url, error: err.message };
-    }
-  }
-
-  function buildFormDataFromFields() {
-    const studentName = document.getElementById('studentName').value.trim();
-    const studentId = document.getElementById('studentId').value.trim();
-    const department = document.getElementById('department').value;
-    const level = document.getElementById('level').value;
-    const signInTime = document.getElementById('signInTime').value || 'Not checked in';
-    const signOutTime = document.getElementById('signOutTime').value || 'Not checked out';
-    const signature = document.getElementById('signatureName').value.trim();
-    const submissionTimestamp = new Date().toLocaleString();
-    
-    const fd = new FormData();
-    fd.append('Student Name', studentName);
-    fd.append('Student ID', studentId);
-    fd.append('Department', department);
-    fd.append('Level', level);
-    fd.append('SignInDateTime', signInTime);
-    fd.append('SignOutDateTime', signOutTime);
-    fd.append('SignatureName', signature);
-    fd.append('SubmissionTimestamp', submissionTimestamp);
-    fd.append('Source', 'MBAC_Daily_Presence');
-    return { fd, studentName, studentId, department, level, signInTime, signOutTime, signature, submissionTimestamp };
-  }
-
-  function redirectToThankYou() {
-    const thankYouHTML = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Thank You | MBAC Presence</title>
-      <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
-        body {
-          background: linear-gradient(145deg, #0b2b3b 0%, #154e5e 100%);
-          min-height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 20px;
-        }
-        .card {
-          background: white;
-          max-width: 600px;
-          border-radius: 48px;
-          padding: 40px 30px;
-          text-align: center;
-          box-shadow: 0 30px 40px rgba(0,0,0,0.3);
-          border: 1px solid #ffb34755;
-        }
-        .logo-circle {
-          background: #ffb347;
-          width: 80px;
-          height: 80px;
-          border-radius: 80px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 38px;
-          font-weight: bold;
-          color: #0b2b3b;
-          margin: 0 auto 20px;
-          box-shadow: 0 8px 14px rgba(0,0,0,0.1);
-        }
-        h1 { color: #0b2b3b; margin-bottom: 12px; font-size: 2.2rem; }
-        p { color: #2c5a68; margin-bottom: 24px; font-size: 1.1rem; line-height: 1.5; }
-        .check-icon { font-size: 64px; color: #2a7f6e; margin: 20px 0; }
-        .btn-home {
-          background: #ffb347;
-          border: none;
-          padding: 12px 28px;
-          border-radius: 60px;
-          font-weight: bold;
-          font-size: 1rem;
-          cursor: pointer;
-          color: #0b2b3b;
-          transition: 0.2s;
-          text-decoration: none;
-          display: inline-block;
-        }
-        .btn-home:hover { transform: scale(1.02); background: #ffa01e; }
-        footer { margin-top: 35px; font-size: 0.75rem; color: #8ba9b2; }
-      </style>
-    </head>
-    <body>
-      <div class="card">
-        <div class="logo-circle">MBAC</div>
-        <div class="check-icon"><i class="fas fa-check-circle"></i></div>
-        <h1>Presence Recorded!</h1>
-        <p>Your daily presence has been successfully submitted to both MBAC databases.<br> Thank you for maintaining academic integrity.</p>
-        <button class="btn-home" onclick="window.location.href=document.referrer || '/'"><i class="fas fa-arrow-left"></i> Return to Presence Form</button>
-        <footer>Malik Bin Anas College of West Africa — Excellence & Integrity</footer>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-book-open"></i> Our Programs</h4>
+      <ul class="programs-list">
+        <li><i class="fas fa-microchip"></i> BSc. Computer Science</li>
+        <li><i class="fas fa-gears"></i> BEng. Engineering</li>
+        <li><i class="fas fa-briefcase"></i> BBA Business Administration</li>
+        <li><i class="fas fa-square-root-variable"></i> BSc. Mathematics</li>
+        <li><i class="fas fa-atom"></i> BSc. Physics</li>
+        <li><i class="fas fa-dna"></i> BSc. Biology</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-calendar-days"></i> Upcoming Events</h4>
+      <ul class="events-list">
+        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">DEC 05</span> Annual Science Fair</span><span class="event-meta">Main Auditorium · 9:00 AM</span></span></li>
+        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">DEC 12</span> Career &amp; Internship Day</span><span class="event-meta">Conference Hall · 10:00 AM</span></span></li>
+        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">JAN 08</span> New Semester Orientation</span><span class="event-meta">Campus Quad · 8:30 AM</span></span></li>
+        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">JAN 20</span> Inter-College Debate</span><span class="event-meta">Lecture Theatre 2 · 2:00 PM</span></span></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4><i class="fas fa-code"></i> Developer</h4>
+      <div class="dev-card">
+        <div class="dev-head">
+          <div class="dev-avatar">M</div>
+          <div><div class="dev-name">Muhammad A. Bello</div><div class="dev-role">Full-Stack Developer · MbAC IT</div></div>
+        </div>
+        <div class="dev-links">
+          <a href="mailto:dev@mbac.edu.gh"><i class="fas fa-envelope"></i> dev@mbac.edu.gh</a>
+          <a href="tel:+233551234567"><i class="fas fa-phone"></i> +233 55 123 4567</a>
+          <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i> github.com/mbac-dev</a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> linkedin.com/in/mbac-dev</a>
+          <a href="https://wa.me/233551234567" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Developer</a>
+        </div>
       </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"><\/script>
-    </body>
-    </html>`;
-    const encodedPage = encodeURIComponent(thankYouHTML);
-    window.location.href = `data:text/html,${encodedPage}`;
-  }
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="brand-mini">
+      <div class="logo-mini">MbAC</div>
+      <span>© <span id="footerYear"></span> Malik bin Anas College of West Africa. All rights reserved.</span>
+    </div>
+    <span>Daily Presence Portal · v1.1</span>
+  </div>
+</footer>
 
-  // Submit handler
-  const form = document.getElementById('presenceForm');
-  
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const studentName = document.getElementById('studentName').value.trim();
-    const studentId = document.getElementById('studentId').value.trim();
-    const signature = document.getElementById('signatureName').value.trim();
-    
-    if(!studentName) {
-      showFeedback('❌ Student name is required!', 'error');
-      document.getElementById('studentName').focus();
-      return;
-    }
-    if(!studentId) {
-      showFeedback('❌ Student ID is required!', 'error');
-      document.getElementById('studentId').focus();
-      return;
-    }
-    if(!signature) {
-      showFeedback('❌ Signature is required!', 'error');
-      document.getElementById('signatureName').focus();
-      return;
-    }
-    
-    const signInField = document.getElementById('signInTime').value;
-    if(!signInField) {
-      showFeedback('⚠️ Please click "Check-in" to set arrival time before submitting.', 'error');
-      return;
-    }
-    
-    const { fd, studentName: name, studentId: id, department, level, signInTime, signOutTime, signature: sig, submissionTimestamp } = buildFormDataFromFields();
-    
-    const newRecord = {
-      studentName: name,
-      studentId: id,
-      department: department,
-      level: level,
-      signInTime: signInTime,
-      signOutTime: signOutTime,
-      signature: sig,
-      submitTimestamp: submissionTimestamp
-    };
-    presenceRecords.push(newRecord);
-    saveToLocalStorage();
-    
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting to both servers...';
-    
-    const promises = FORMSPREE_ENDPOINTS.map(endpoint => sendToFormspree(endpoint, fd));
-    const results = await Promise.allSettled(promises);
-    const succeeded = results.filter(r => r.status === 'fulfilled' && r.value.success === true).length;
-    
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalBtnText;
-    
-    if (succeeded === 2) {
-      showFeedback('🎉 Success! Presence submitted to both MBAC databases. Redirecting to thank you page...', 'success');
-    } else if (succeeded === 1) {
-      showFeedback('⚠️ Partial success: submitted to 1 of 2 databases. Data saved locally. Redirecting...', 'success');
-    } else {
-      showFeedback('❌ Could not reach any Formspree endpoint. Data stored locally only. Still redirecting to summary.', 'error');
-    }
-    
-    // Clear time & signature fields for next entry
-    document.getElementById('signInTime').value = '';
-    document.getElementById('signOutTime').value = '';
-    document.getElementById('signatureName').value = '';
-    
-    setTimeout(() => {
-      redirectToThankYou();
-    }, 1600);
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL = 'https://tvbuxljxkvflntjububs.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2YnV4bGp4a3ZmbG50anVidWJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMzAzOTYsImV4cCI6MjExMDYwNjM5Nn0.74vBpNRFSWwyqIAMnakvA0NhSst2Qnzh4tIzFmvt65g';
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const loginScreen = document.getElementById('loginScreen');
+const dashboard   = document.getElementById('dashboard');
+const loginBtn    = document.getElementById('loginBtn');
+const loginName   = document.getElementById('loginName');
+const loginId     = document.getElementById('loginId');
+const loginError  = document.getElementById('loginError');
+const logoutBtn   = document.getElementById('logoutBtn');
+
+const studentName = document.getElementById('studentName');
+const studentId   = document.getElementById('studentId');
+const department  = document.getElementById('department');
+const year        = document.getElementById('year');
+const dateTimeDisplay = document.getElementById('dateTimeDisplay');
+const signatureInput  = document.getElementById('signatureInput');
+const presenceForm    = document.getElementById('presenceForm');
+const signBtn         = document.getElementById('signBtn');
+
+const totalDaysEl    = document.getElementById('totalDays');
+const presentDaysEl  = document.getElementById('presentDays');
+const lastSignInEl   = document.getElementById('lastSignIn');
+const progressFill   = document.getElementById('progressFill');
+const percentageText = document.getElementById('percentageText');
+const recentList     = document.getElementById('recentList');
+
+const gradesList       = document.getElementById('gradesList');
+const refreshGradesBtn = document.getElementById('refreshGradesBtn');
+
+const toast = document.getElementById('toast');
+
+let currentUser = { name:'', id:'' };
+let clockInterval = null;
+
+function showToast(msg, type='info') {
+  toast.textContent = msg;
+  toast.className = 'toast show ' + (type === 'error' ? 'error' : type === 'success' ? 'success' : '');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.className = 'toast', 3500);
+}
+
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+function setLoginError(msg, success=false) {
+  loginError.textContent = msg;
+  loginError.className = 'error-msg' + (success ? ' success-msg' : '');
+}
+
+function setBusy(busy) {
+  loginBtn.disabled = busy;
+  signBtn.disabled = busy;
+  loginBtn.innerHTML = busy ? '<i class="fas fa-spinner fa-spin"></i> Please wait…' : '<i class="fas fa-arrow-right-to-bracket"></i> Login';
+}
+
+function updateDateTimeDisplay() {
+  const now = new Date();
+  dateTimeDisplay.value = now.toLocaleDateString('en-US', {
+    weekday:'long', year:'numeric', month:'long', day:'numeric',
+    hour:'2-digit', minute:'2-digit', second:'2-digit'
   });
-  
-  // Newsletter subscription
-  document.getElementById('subBtn').addEventListener('click', () => {
-    const email = document.getElementById('subEmail').value.trim();
-    if(email && email.includes('@') && email.includes('.')) {
-      alert(`✨ Thanks ${email}! You'll receive MBAC updates.`);
-      document.getElementById('subEmail').value = '';
-    } else {
-      alert('Please enter a valid email address (e.g., name@example.com)');
+}
+
+function startClock() {
+  if (clockInterval) clearInterval(clockInterval);
+  clockInterval = setInterval(() => {
+    if (dashboard.style.display === 'grid') updateDateTimeDisplay();
+  }, 1000);
+}
+
+async function refreshSidebarStats() {
+  if (!currentUser.id) return;
+  try {
+    const { data: stats, error } = await supabase
+      .from('student_attendance_stats')
+      .select('*')
+      .eq('student_id', currentUser.id)
+      .single();
+    if (error) throw error;
+    const presentDays = Number(stats.total_present_days) || 0;
+    const percentage = Number(stats.attendance_percentage) || 0;
+    totalDaysEl.textContent = presentDays;
+    presentDaysEl.textContent = presentDays;
+    percentageText.textContent = percentage + '%';
+    progressFill.style.width = Math.min(100, percentage) + '%';
+    if (stats.last_sign_in) {
+      const dt = new Date(stats.last_sign_in);
+      lastSignInEl.textContent = dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + dt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    } else lastSignInEl.textContent = '—';
+    await refreshRecent();
+  } catch (err) {
+    console.error('Stats error:', err.message);
+  }
+}
+
+async function refreshRecent() {
+  const { data: recent, error } = await supabase.rpc('get_recent_attendance', { p_student_id: currentUser.id, p_limit: 5 });
+  if (error) { console.error(error); return; }
+  if (!recent || recent.length === 0) {
+    recentList.innerHTML = '<li style="color:#8aa1be; justify-content:center;">No records yet</li>';
+    return;
+  }
+  recentList.innerHTML = recent.map(r => `<li><span class="date-badge">${r.attendance_date}</span><span>${esc(r.department)} · ${esc(r.year)}</span></li>`).join('');
+}
+
+// NEW: load grades
+async function loadGrades() {
+  if (!currentUser.id) return;
+  gradesList.innerHTML = '<li class="grades-empty"><i class="fas fa-spinner fa-spin"></i> Loading…</li>';
+  try {
+    const { data, error } = await supabase.rpc('get_student_grades', { p_student_id: currentUser.id });
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      gradesList.innerHTML = '<li class="grades-empty">No grades published yet.</li>';
+      return;
     }
-  });
-  
-  loadHistoryFromStorage();
+    gradesList.innerHTML = data.map(g => {
+      const score = Number(g.score);
+      const cls = score >= 70 ? 'a' : score >= 50 ? 'c' : 'f';
+      return `
+        <li>
+          <div class="grade-item">
+            <div class="grade-module">${esc(g.module_name)}</div>
+            <div class="grade-badge ${cls}">${esc(g.letter_grade)}</div>
+          </div>
+          <div class="grade-meta">
+            ${score}% · ${esc(g.lecturer_name || 'Lecturer')} · ${g.published_at ? new Date(g.published_at).toLocaleDateString() : ''}
+          </div>
+        </li>
+      `;
+    }).join('');
+  } catch (err) {
+    console.error('Grades error:', err.message);
+    gradesList.innerHTML = '<li class="grades-empty">Could not load grades.</li>';
+  }
+}
+
+async function handleLogin() {
+  const name = loginName.value.trim();
+  const id   = loginId.value.trim();
+  if (!name || !id) { setLoginError('Please enter both name and ID number.'); return; }
+  if (id.length < 3) { setLoginError('ID number must be at least 3 characters.'); return; }
+  setLoginError('');
+  setBusy(true);
+  try {
+    let { data: found, error } = await supabase.rpc('login_student', { p_full_name: name, p_student_id: id });
+    if (error) throw error;
+    if (!found || found.length === 0) {
+      const { data: registered, error: regErr } = await supabase.rpc('register_student', { p_full_name: name, p_student_id: id });
+      if (regErr) throw regErr;
+      found = registered;
+    }
+    const student = found[0];
+    if (!student) throw new Error('Unable to log in.');
+    currentUser.name = student.full_name;
+    currentUser.id   = student.student_id;
+    studentName.value = student.full_name;
+    studentId.value   = student.student_id;
+    if (student.department) department.value = student.department;
+    if (student.year)       year.value       = student.year;
+    setLoginError('Login successful!', true);
+    showDashboard();
+  } catch (err) {
+    console.error(err);
+    setLoginError(err.message || 'Login failed. Check your name and ID.');
+  } finally { setBusy(false); }
+}
+
+function showDashboard() {
+  loginScreen.classList.add('hidden');
+  dashboard.style.display = 'grid';
+  signatureInput.value = '';
+  updateDateTimeDisplay();
+  refreshSidebarStats();
+  loadGrades();
+  startClock();
+}
+
+function showLogin() {
+  if (clockInterval) clearInterval(clockInterval);
+  loginScreen.classList.remove('hidden');
+  dashboard.style.display = 'none';
+  loginName.value = '';
+  loginId.value = '';
+  signatureInput.value = '';
+  setLoginError('');
+  currentUser = { name:'', id:'' };
+}
+
+async function handleSignIn(e) {
+  e.preventDefault();
+  const signature = signatureInput.value.trim();
+  if (!signature) { showToast('Please enter your signature before signing in.', 'error'); return; }
+  setBusy(true);
+  try {
+    const { data, error } = await supabase.rpc('sign_in_daily', {
+      p_student_id: currentUser.id,
+      p_signature: signature,
+      p_department: department.value,
+      p_year: year.value
+    });
+    if (error) throw error;
+    const result = data[0];
+    if (!result || !result.success) { showToast(result?.message || 'Unable to sign in.', 'error'); return; }
+    signatureInput.value = '';
+    updateDateTimeDisplay();
+    await refreshSidebarStats();
+    showToast('Sign-in successful for today!', 'success');
+  } catch (err) {
+    console.error(err);
+    showToast(err.message || 'Sign-in failed.', 'error');
+  } finally { setBusy(false); }
+}
+
+function handleLogout() {
+  showLogin();
+  showToast('Logged out.', 'info');
+}
+
+loginBtn.addEventListener('click', handleLogin);
+loginName.addEventListener('keypress', e => { if (e.key === 'Enter') handleLogin(); });
+loginId.addEventListener('keypress',   e => { if (e.key === 'Enter') handleLogin(); });
+presenceForm.addEventListener('submit', handleSignIn);
+logoutBtn.addEventListener('click', handleLogout);
+refreshGradesBtn.addEventListener('click', loadGrades);
+
+(function init() {
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+  showLogin();
+  startClock();
+  updateDateTimeDisplay();
+})();
 </script>
 </body>
 </html>
