@@ -1,204 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Malik bin Anas College of West Africa — Daily Presence</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Roboto,system-ui,sans-serif; }
-    body { background: linear-gradient(145deg,#eef2f7,#d9e0eb); min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:16px; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MbAC — Student Portal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Roboto,system-ui,sans-serif}
+body{background:linear-gradient(145deg,#eef2f7,#d9e0eb);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:16px}
 
-    /* ================= HEADER ================= */
-    .site-header { width:1200px; max-width:100%; margin-bottom:16px; background:linear-gradient(120deg,#1e3a5f,#2b4b77); border-radius:30px; box-shadow:0 20px 40px -15px rgba(10,25,50,0.4); overflow:hidden; border:1px solid rgba(255,255,255,0.15); }
-    .header-inner { display:flex; align-items:center; justify-content:space-between; padding:18px 28px; gap:20px; flex-wrap:wrap; }
-    .brand { display:flex; align-items:center; gap:16px; }
-    .logo { width:64px; height:64px; border-radius:20px; background:linear-gradient(135deg,#f5b942,#d98c00); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:22px; letter-spacing:-1px; color:#1e2f4e; box-shadow:0 8px 18px -6px rgba(0,0,0,0.35),inset 0 -3px 0 rgba(0,0,0,0.15); position:relative; overflow:hidden; }
-    .logo::after { content:''; position:absolute; top:-30%; left:-30%; width:60%; height:60%; background:rgba(255,255,255,0.35); transform:rotate(45deg); }
-    .logo-text { font-family:'Georgia',serif; font-weight:900; font-size:22px; color:#fff; }
-    .brand-titles { display:flex; flex-direction:column; line-height:1.15; }
-    .college-name { font-size:22px; font-weight:700; color:#fff; letter-spacing:-0.3px; }
-    .college-sub { font-size:13px; font-weight:500; color:#b8cde3; letter-spacing:1.5px; text-transform:uppercase; margin-top:2px; }
-    .header-info { display:flex; align-items:center; gap:18px; }
-    .info-chip { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); padding:8px 16px; border-radius:30px; border:1px solid rgba(255,255,255,0.12); color:#dfe9f4; font-size:13px; }
-    .info-chip i { color:#f5b942; }
+/* Header */
+.site-header{width:1200px;max-width:100%;margin-bottom:16px;background:linear-gradient(120deg,#1e3a5f,#2b4b77);border-radius:30px;box-shadow:0 20px 40px -15px rgba(10,25,50,0.4);overflow:hidden}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:18px;background:linear-gradient(135deg,#f5b942,#d98c00);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:900;font-size:20px;color:#1e2f4e;box-shadow:0 8px 18px -6px rgba(0,0,0,0.35)}
+.brand-titles{display:flex;flex-direction:column;line-height:1.15}
+.college-name{font-size:20px;font-weight:700;color:#fff}
+.college-sub{font-size:12px;font-weight:500;color:#b8cde3;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.clock-widget{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);padding:8px 14px;border-radius:20px;font-size:12px;border:1px solid rgba(255,255,255,0.15);color:#dfe9f4}
+.clock-widget i{color:#f5b942}
+.lang-switch{padding:8px 12px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.2);border-radius:20px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;outline:none}
+.lang-switch option{color:#1e2f4e;background:#fff}
 
-    /* ================= APP ================= */
-    .app-container { width:1200px; max-width:100%; background:rgba(255,255,255,0.78); backdrop-filter:blur(8px); border-radius:40px; box-shadow:0 25px 50px -10px rgba(0,20,40,0.3); overflow:hidden; border:1px solid rgba(255,255,255,0.6); margin-bottom:16px; }
+/* App */
+.app-container{width:1200px;max-width:100%;background:rgba(255,255,255,0.78);backdrop-filter:blur(8px);border-radius:40px;box-shadow:0 25px 50px -10px rgba(0,20,40,0.3);overflow:hidden;border:1px solid rgba(255,255,255,0.6);margin-bottom:16px}
 
-    /* LOGIN */
-    .login-screen { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 32px; min-height:500px; }
-    .login-card { background:#fff; max-width:420px; width:100%; padding:40px 32px; border-radius:32px; box-shadow:0 15px 30px -10px rgba(0,30,60,0.2); border:1px solid rgba(255,255,255,0.8); }
-    .login-card h2 { font-size:28px; font-weight:600; color:#1e2f4e; margin-bottom:8px; display:flex; align-items:center; gap:12px; }
-    .login-card h2 i { color:#3a6ea5; font-size:30px; }
-    .login-card p { color:#5b6f8c; margin-bottom:28px; font-size:15px; border-left:4px solid #3a6ea5; padding:10px 16px; background:#f0f6fe; border-radius:0 12px 12px 0; }
-    .input-group { margin-bottom:22px; }
-    .input-group label { display:block; font-size:14px; font-weight:500; color:#2c3e5c; margin-bottom:8px; }
-    .input-group input { width:100%; padding:14px 18px; border:1.5px solid #d4e0f0; border-radius:18px; font-size:16px; background:#f9fcff; outline:none; color:#1e2f4e; transition:0.2s; }
-    .input-group input:focus { border-color:#3a6ea5; box-shadow:0 0 0 4px rgba(58,110,165,0.15); background:#fff; }
-    .btn-login { width:100%; padding:16px; background:#1e3a5f; border:none; border-radius:30px; color:#fff; font-size:18px; font-weight:600; cursor:pointer; transition:0.25s; margin-top:12px; display:flex; align-items:center; justify-content:center; gap:12px; box-shadow:0 10px 20px -8px #1e3a5f80; }
-    .btn-login:hover { background:#2b4b77; transform:scale(1.02); }
-    .btn-login:disabled { opacity:0.6; cursor:not-allowed; }
-    .error-msg { color:#c0392b; font-size:14px; margin-top:14px; text-align:center; min-height:20px; font-weight:500; }
-    .success-msg { color:#1e8449; }
+/* Login */
+.login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 24px;min-height:460px}
+.login-card{background:#fff;max-width:420px;width:100%;padding:36px 30px;border-radius:32px;box-shadow:0 15px 30px -10px rgba(0,30,60,0.2);border:1px solid rgba(255,255,255,0.8)}
+.login-card h2{font-size:26px;font-weight:600;color:#1e2f4e;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.login-card h2 i{color:#3a6ea5;font-size:28px}
+.login-card p{color:#5b6f8c;margin-bottom:24px;font-size:14px;border-left:4px solid #3a6ea5;padding:9px 14px;background:#f0f6fe;border-radius:0 12px 12px 0}
+.input-group{margin-bottom:18px}
+.input-group label{display:block;font-size:13px;font-weight:600;color:#2c3e5c;margin-bottom:7px}
+.input-group input{width:100%;padding:13px 16px;border:1.5px solid #d4e0f0;border-radius:16px;font-size:15px;background:#f9fcff;outline:none;color:#1e2f4e;transition:0.2s}
+.input-group input:focus{border-color:#3a6ea5;box-shadow:0 0 0 4px rgba(58,110,165,0.15);background:#fff}
+.btn-login{width:100%;padding:14px;background:#1e3a5f;border:none;border-radius:30px;color:#fff;font-size:16px;font-weight:600;cursor:pointer;transition:0.25s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 20px -8px #1e3a5f80}
+.btn-login:hover{background:#2b4b77;transform:scale(1.02)}
+.btn-login:disabled{opacity:0.6;cursor:not-allowed}
+.error-msg{color:#c0392b;font-size:13px;margin-top:12px;text-align:center;min-height:18px;font-weight:500}
+.success-msg{color:#1e8449}
 
-    /* DASHBOARD */
-    .dashboard { display:none; grid-template-columns:1fr 340px; min-height:650px; }
-    .form-section { padding:32px 32px 32px 40px; background:#fff; border-right:1px solid #e2ebf5; display:flex; flex-direction:column; }
-    .header-welcome { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
-    .header-welcome h2 { font-size:26px; font-weight:600; color:#1e2f4e; }
-    .header-welcome h2 i { color:#3a6ea5; margin-right:10px; }
-    .logout-btn { background:#eef4fc; border:1px solid #d4e2f2; padding:10px 22px; border-radius:30px; font-size:14px; font-weight:500; color:#1e3a5f; cursor:pointer; display:flex; align-items:center; gap:8px; }
-    .logout-btn:hover { background:#dbe7f5; }
+/* Dashboard */
+.dashboard{display:none;grid-template-columns:1fr 340px;min-height:640px}
+.form-section{padding:28px 28px 28px 36px;background:#fff;border-right:1px solid #e2ebf5;display:flex;flex-direction:column}
+.header-welcome{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:12px;flex-wrap:wrap}
+.header-welcome h2{font-size:24px;font-weight:600;color:#1e2f4e}
+.header-welcome h2 i{color:#3a6ea5;margin-right:10px}
+.logout-btn{background:#eef4fc;border:1px solid #d4e2f2;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:500;color:#1e3a5f;cursor:pointer;display:flex;align-items:center;gap:7px}
+.logout-btn:hover{background:#dbe7f5}
+.sign-form{display:flex;flex-direction:column;gap:16px;flex:1}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:5px}
+.form-field label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#5e7392}
+.form-field input,.form-field select{padding:11px 15px;border:1.5px solid #d4e0f0;border-radius:14px;font-size:14px;background:#f9fcff;outline:none;color:#1e2f4e}
+.form-field input:focus,.form-field select:focus{border-color:#3a6ea5;background:#fff;box-shadow:0 0 0 3px rgba(58,110,165,0.12)}
+.form-field input:read-only{background:#eef3fa;color:#4b6589;border-color:#cad9ec}
+.signature-area{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.signature-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#5e7392}
+.signature-box{display:flex;align-items:center;background:#f6faff;border-radius:18px;padding:5px 5px 5px 18px;border:1.5px solid #d4e0f0}
+.signature-box input{flex:1;border:none;background:transparent;padding:12px 0;font-size:15px;outline:none;color:#1e2f4e;font-style:italic}
+.signature-box input::placeholder{color:#9bb1cc;font-style:normal}
+.btn-sign{background:#1e3a5f;color:#fff;border:none;padding:14px 28px;border-radius:30px;font-size:16px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;margin-top:8px;box-shadow:0 12px 22px -10px #1e3a5f;width:fit-content;min-width:200px}
+.btn-sign:hover{background:#2b4b77;transform:translateY(-2px)}
+.btn-sign:disabled{opacity:0.6;cursor:not-allowed;transform:none}
 
-    .sign-form { display:flex; flex-direction:column; gap:18px; flex:1; }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-    .form-field { display:flex; flex-direction:column; gap:6px; }
-    .form-field label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#5e7392; }
-    .form-field input, .form-field select { padding:12px 16px; border:1.5px solid #d4e0f0; border-radius:16px; font-size:15px; background:#f9fcff; outline:none; color:#1e2f4e; }
-    .form-field input:focus, .form-field select:focus { border-color:#3a6ea5; background:#fff; box-shadow:0 0 0 3px rgba(58,110,165,0.12); }
-    .form-field input:read-only { background:#eef3fa; color:#4b6589; border-color:#cad9ec; }
+/* Sidebar */
+.sidebar{background:#f2f7fe;padding:28px 20px;display:flex;flex-direction:column;gap:20px;border-left:1px solid #e0eaf5;overflow-y:auto;max-height:760px}
+.sidebar h3{font-size:17px;font-weight:600;color:#1e2f4e;display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.sidebar h3 i{color:#3a6ea5;font-size:18px}
+.stat-card{background:#fff;border-radius:22px;padding:16px 18px;box-shadow:0 8px 18px -8px rgba(30,50,80,0.15);border:1px solid #e7eff9}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed #dbe6f2}
+.stat-row:last-child{border-bottom:none}
+.stat-label{font-size:13px;color:#4d627d;display:flex;align-items:center;gap:9px}
+.stat-label i{width:18px;color:#3a6ea5}
+.stat-value{font-weight:700;font-size:15px;color:#1e2f4e;background:#e9f0fa;padding:5px 12px;border-radius:40px}
+.attendance-progress{margin-top:12px;background:#e2ecf9;border-radius:30px;height:11px;overflow:hidden}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#3a6ea5,#5d9bdf);border-radius:30px;transition:width 0.4s}
+.percentage-text{text-align:right;font-size:12px;font-weight:600;color:#3a6ea5;margin-top:5px}
+.recent-list{list-style:none;margin-top:6px}
+.recent-list li{font-size:12.5px;padding:9px 0;border-bottom:1px solid #e4edf8;display:flex;justify-content:space-between;color:#3a5375}
+.recent-list li:last-child{border-bottom:none}
+.recent-list .date-badge{font-weight:600;color:#1e3a5f}
+.note{font-size:12px;color:#6e86a5;background:#e4eefa;border-radius:20px;padding:9px 14px;text-align:center}
 
-    .signature-area { display:flex; flex-direction:column; gap:8px; margin-top:6px; }
-    .signature-label { font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:#5e7392; }
-    .signature-box { display:flex; align-items:center; background:#f6faff; border-radius:20px; padding:6px 6px 6px 20px; border:1.5px solid #d4e0f0; }
-    .signature-box input { flex:1; border:none; background:transparent; padding:14px 0; font-size:16px; outline:none; color:#1e2f4e; font-style:italic; }
-    .signature-box input::placeholder { color:#9bb1cc; font-style:normal; }
+/* Grades & Announcements cards */
+.info-card{background:#fff;border-radius:22px;padding:16px 18px;box-shadow:0 8px 18px -8px rgba(30,50,80,0.15);border:1px solid #e7eff9}
+.info-card h4{font-size:13px;color:#1e2f4e;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.info-card h4 i{color:#6c5ce7}
+.refresh-btn{background:none;border:none;color:#3a6ea5;font-size:11.5px;cursor:pointer;display:flex;align-items:center;gap:5px;padding:0;margin-bottom:6px}
+.refresh-btn:hover{color:#1e3a5f}
+.grades-list,.ann-list{list-style:none;max-height:260px;overflow-y:auto}
+.grades-list li{padding:9px 0;border-bottom:1px solid #f0f4fa;font-size:12.5px}
+.grades-list li:last-child{border-bottom:none}
+.grade-item{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.grade-module{color:#33425e;font-weight:600;flex:1}
+.grade-badge{font-weight:800;font-size:12px;padding:2px 9px;border-radius:8px}
+.grade-badge.a{background:#e0f7e9;color:#1e8449}
+.grade-badge.c{background:#fff1d8;color:#b26b00}
+.grade-badge.f{background:#ffe3e3;color:#c0392b}
+.grade-meta{font-size:10.5px;color:#8aa4c1;margin-top:2px}
+.empty-mini{text-align:center;padding:12px;color:#9bb1cc;font-size:12px;font-style:italic}
+.ann-item{padding:9px 0;border-bottom:1px dashed #f0f4fa;font-size:12px}
+.ann-item:last-child{border-bottom:none}
+.ann-title{font-weight:700;color:#1e2f4e;margin-bottom:3px;display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.ann-tag{font-size:9.5px;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:8px;background:#e3efff;color:#2b7de9}
+.ann-tag.financial{background:#e0f7e9;color:#1e8449}
+.ann-tag.social{background:#fff1d8;color:#b26b00}
+.ann-tag.urgent{background:#ffe3e3;color:#c0392b}
+.ann-body{color:#33425e;line-height:1.45}
+.ann-closing{font-size:11px;font-style:italic;color:#5b6f8c;border-top:1px dashed #e4edf8;padding-top:4px;margin-top:4px}
+.ann-meta{font-size:10px;color:#8aa4c1;margin-top:3px}
 
-    .btn-sign { background:#1e3a5f; color:#fff; border:none; padding:16px 32px; border-radius:30px; font-size:18px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; gap:14px; cursor:pointer; margin-top:10px; box-shadow:0 12px 22px -10px #1e3a5f; width:fit-content; min-width:220px; }
-    .btn-sign:hover { background:#2b4b77; transform:translateY(-2px); }
-    .btn-sign:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+/* Footer */
+.site-footer{width:1200px;max-width:100%;background:linear-gradient(160deg,#14263e,#1e3a5f);border-radius:40px;color:#d6e2f0;padding:36px 32px 22px;margin-bottom:12px}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1.1fr 1.2fr;gap:30px}
+.footer-col h4{font-size:14px;font-weight:700;color:#f5b942;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.footer-col p,.footer-col li,.footer-col a{font-size:13px;color:#b8cde3;line-height:1.6;text-decoration:none}
+.footer-col a:hover{color:#f5b942}
+.contact-row{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:13px;color:#cddff0}
+.contact-row i{width:16px;color:#f5b942;text-align:center}
+.contact-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.contact-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 10px;border-radius:12px;font-size:12px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.05);color:#e8f1fa;transition:0.22s}
+.contact-btn i{font-size:14px}
+.contact-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.12);color:#fff}
+.contact-btn.whatsapp:hover{background:#25D366;border-color:#25D366}
+.contact-btn.phone:hover{background:#2b7de9;border-color:#2b7de9}
+.contact-btn.message:hover{background:#6c5ce7;border-color:#6c5ce7}
+.contact-btn.sms:hover{background:#f39c12;border-color:#f39c12;color:#1e2f4e}
+.programs-list,.events-list{list-style:none}
+.programs-list li,.events-list li{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,0.08);font-size:13px;color:#c7d9ec}
+.programs-list li:last-child,.events-list li:last-child{border-bottom:none}
+.programs-list li i,.events-list li i{color:#f5b942;margin-top:3px;font-size:12px;flex-shrink:0}
+.event-date{display:inline-block;background:rgba(245,185,66,0.18);color:#f5b942;font-size:10px;font-weight:700;padding:2px 7px;border-radius:7px;margin-right:5px}
+.event-title{display:block;color:#e2ecf7;font-weight:500;font-size:13px}
+.event-meta{font-size:11px;color:#8aa4c1;margin-top:2px}
+.dev-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:14px 16px}
+.dev-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.dev-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#f5b942,#d98c00);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1e2f4e;font-size:16px}
+.dev-name{color:#fff;font-weight:700;font-size:14px}
+.dev-role{color:#8aa4c1;font-size:11px;margin-top:1px}
+.dev-links{display:flex;flex-direction:column;gap:6px}
+.dev-links a{display:flex;align-items:center;gap:8px;font-size:12px;color:#cddff0;text-decoration:none;padding:3px 0}
+.dev-links a i{width:14px;color:#f5b942;font-size:12px;text-align:center}
+.dev-links a:hover{color:#f5b942}
+.footer-bottom{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:#8aa4c1}
+.brand-mini{display:flex;align-items:center;gap:9px;color:#b8cde3}
+.logo-mini{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#f5b942,#d98c00);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#1e2f4e}
 
-    /* SIDEBAR */
-    .sidebar { background:#f2f7fe; padding:32px 22px; display:flex; flex-direction:column; gap:24px; border-left:1px solid #e0eaf5; overflow-y:auto; max-height:750px; }
-    .sidebar h3 { font-size:18px; font-weight:600; color:#1e2f4e; display:flex; align-items:center; gap:10px; margin-bottom:12px; }
-    .sidebar h3 i { color:#3a6ea5; font-size:19px; }
-    .stat-card { background:#fff; border-radius:24px; padding:18px 20px; box-shadow:0 8px 18px -8px rgba(30,50,80,0.15); border:1px solid #e7eff9; }
-    .stat-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px dashed #dbe6f2; }
-    .stat-row:last-child { border-bottom:none; }
-    .stat-label { font-size:14px; color:#4d627d; display:flex; align-items:center; gap:10px; }
-    .stat-label i { width:20px; color:#3a6ea5; }
-    .stat-value { font-weight:700; font-size:16px; color:#1e2f4e; background:#e9f0fa; padding:6px 14px; border-radius:40px; }
-    .attendance-progress { margin-top:14px; background:#e2ecf9; border-radius:30px; height:12px; overflow:hidden; }
-    .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,#3a6ea5,#5d9bdf); border-radius:30px; transition:width 0.4s; }
-    .percentage-text { text-align:right; font-size:13px; font-weight:600; color:#3a6ea5; margin-top:6px; }
-    .recent-list { list-style:none; margin-top:8px; }
-    .recent-list li { font-size:13px; padding:10px 0; border-bottom:1px solid #e4edf8; display:flex; justify-content:space-between; color:#3a5375; }
-    .recent-list li:last-child { border-bottom:none; }
-    .recent-list .date-badge { font-weight:600; color:#1e3a5f; }
-    .note { font-size:12.5px; color:#6e86a5; background:#e4eefa; border-radius:20px; padding:10px 16px; text-align:center; }
+.toast{position:fixed;bottom:24px;right:24px;background:#1e3a5f;color:#fff;padding:13px 20px;border-radius:14px;box-shadow:0 10px 30px -8px rgba(0,20,60,0.4);font-size:14px;opacity:0;transform:translateY(20px);transition:0.3s;pointer-events:none;z-index:9999;max-width:340px}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.error{background:#c0392b}
+.toast.success{background:#1e8449}
+.hidden{display:none!important}
 
-    /* NEW: GRADES SECTION */
-    .grades-card { background:#fff; border-radius:24px; padding:18px 20px; box-shadow:0 8px 18px -8px rgba(30,50,80,0.15); border:1px solid #e7eff9; }
-    .grades-card h4 { font-size:14px; color:#1e2f4e; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
-    .grades-card h4 i { color:#6c5ce7; }
-    .grades-list { list-style:none; }
-    .grades-list li { padding:10px 0; border-bottom:1px solid #f0f4fa; font-size:13px; }
-    .grades-list li:last-child { border-bottom:none; }
-    .grade-item { display:flex; justify-content:space-between; align-items:center; gap:10px; }
-    .grade-module { color:#33425e; font-weight:600; flex:1; }
-    .grade-badge { font-weight:800; font-size:13px; padding:3px 10px; border-radius:8px; }
-    .grade-badge.a { background:#e0f7e9; color:#1e8449; }
-    .grade-badge.b { background:#e3efff; color:#2b7de9; }
-    .grade-badge.c { background:#fff1d8; color:#b26b00; }
-    .grade-badge.f { background:#ffe3e3; color:#c0392b; }
-    .grade-meta { font-size:11px; color:#8aa4c1; margin-top:3px; }
-    .grades-empty { text-align:center; padding:14px; color:#9bb1cc; font-size:12.5px; font-style:italic; }
-    .grades-refresh { background:none; border:none; color:#3a6ea5; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px; padding:0; margin-bottom:8px; }
-    .grades-refresh:hover { color:#1e3a5f; }
-
-    .hidden { display:none !important; }
-
-    /* toast */
-    .toast { position:fixed; bottom:30px; right:30px; background:#1e3a5f; color:#fff; padding:14px 22px; border-radius:16px; box-shadow:0 10px 30px -8px rgba(0,20,60,0.4); font-size:15px; opacity:0; transform:translateY(20px); transition:0.3s; pointer-events:none; z-index:9999; max-width:340px; }
-    .toast.show { opacity:1; transform:translateY(0); }
-    .toast.error { background:#c0392b; }
-    .toast.success { background:#1e8449; }
-
-    /* ================= FOOTER ================= */
-    .site-footer { width:1200px; max-width:100%; background:linear-gradient(160deg,#14263e,#1e3a5f); border-radius:40px; box-shadow:0 25px 50px -15px rgba(0,20,50,0.5); color:#d6e2f0; padding:40px 36px 26px; border:1px solid rgba(255,255,255,0.08); margin-bottom:12px; }
-    .footer-grid { display:grid; grid-template-columns:1.3fr 1fr 1.1fr 1.2fr; gap:34px; }
-    .footer-col h4 { font-size:15px; font-weight:700; color:#f5b942; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:9px; }
-    .footer-col h4 i { font-size:16px; }
-    .footer-col p, .footer-col li, .footer-col a { font-size:14px; color:#b8cde3; line-height:1.65; text-decoration:none; }
-    .footer-col a:hover { color:#f5b942; }
-    .contact-row { display:flex; align-items:center; gap:10px; padding:7px 0; font-size:14px; color:#cddff0; }
-    .contact-row i { width:18px; color:#f5b942; text-align:center; }
-    .contact-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
-    .contact-btn { display:flex; align-items:center; justify-content:center; gap:9px; padding:11px 12px; border-radius:14px; font-size:13px; font-weight:600; cursor:pointer; text-decoration:none; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.05); color:#e8f1fa; transition:all 0.22s; }
-    .contact-btn i { font-size:16px; }
-    .contact-btn:hover { transform:translateY(-2px); background:rgba(255,255,255,0.12); color:#fff; }
-    .contact-btn.whatsapp:hover { background:#25D366; border-color:#25D366; }
-    .contact-btn.phone:hover { background:#2b7de9; border-color:#2b7de9; }
-    .contact-btn.message:hover { background:#6c5ce7; border-color:#6c5ce7; }
-    .contact-btn.sms:hover { background:#f39c12; border-color:#f39c12; color:#1e2f4e; }
-    .programs-list, .events-list { list-style:none; }
-    .programs-list li, .events-list li { display:flex; align-items:flex-start; gap:10px; padding:8px 0; border-bottom:1px dashed rgba(255,255,255,0.08); font-size:14px; color:#c7d9ec; }
-    .programs-list li:last-child, .events-list li:last-child { border-bottom:none; }
-    .programs-list li i, .events-list li i { color:#f5b942; margin-top:3px; font-size:13px; flex-shrink:0; }
-    .event-date { display:inline-block; background:rgba(245,185,66,0.18); color:#f5b942; font-size:11px; font-weight:700; padding:2px 8px; border-radius:8px; margin-right:6px; }
-    .event-title { display:block; color:#e2ecf7; font-weight:500; }
-    .event-meta { font-size:12px; color:#8aa4c1; margin-top:2px; }
-    .dev-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:16px 18px; }
-    .dev-head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-    .dev-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#f5b942,#d98c00); display:flex; align-items:center; justify-content:center; font-weight:800; color:#1e2f4e; font-size:18px; }
-    .dev-name { color:#fff; font-weight:700; font-size:15px; }
-    .dev-role { color:#8aa4c1; font-size:12px; margin-top:1px; }
-    .dev-links { display:flex; flex-direction:column; gap:7px; }
-    .dev-links a { display:flex; align-items:center; gap:9px; font-size:13px; color:#cddff0; text-decoration:none; padding:4px 0; }
-    .dev-links a i { width:16px; color:#f5b942; font-size:13px; text-align:center; }
-    .dev-links a:hover { color:#f5b942; }
-    .footer-bottom { margin-top:32px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:#8aa4c1; }
-    .footer-bottom .brand-mini { display:flex; align-items:center; gap:10px; color:#b8cde3; }
-    .footer-bottom .logo-mini { width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,#f5b942,#d98c00); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:#1e2f4e; }
-
-    @media (max-width:900px) {
-      .dashboard { grid-template-columns:1fr; }
-      .sidebar { border-left:none; border-top:1px solid #e0eaf5; max-height:none; }
-      .footer-grid { grid-template-columns:1fr 1fr; }
-      .header-info { display:none; }
-    }
-    @media (max-width:560px) {
-      .footer-grid { grid-template-columns:1fr; }
-      .college-name { font-size:18px; }
-      .contact-actions { grid-template-columns:1fr; }
-      .form-row { grid-template-columns:1fr; }
-    }
-  </style>
+@media(max-width:900px){.dashboard{grid-template-columns:1fr}.sidebar{border-left:none;border-top:1px solid #e0eaf5;max-height:none}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}.college-name{font-size:16px}.contact-actions{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.header-actions{width:100%;justify-content:space-between}}
+</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
-      <div class="logo"><span class="logo-text">MbAC</span></div>
+      <div class="logo">MbAC</div>
       <div class="brand-titles">
-        <span class="college-name">Malik bin Anas College of West Africa</span>
-        <span class="college-sub">Excellence · Integrity · Knowledge</span>
+        <span class="college-name" data-i18n="header.college">Malik bin Anas College of West Africa</span>
+        <span class="college-sub" data-i18n="header.tagline">Excellence · Integrity · Knowledge</span>
       </div>
     </div>
-    <div class="header-info">
-      <span class="info-chip"><i class="fas fa-graduation-cap"></i> Daily Presence Portal</span>
-      <span class="info-chip"><i class="fas fa-shield-halved"></i> Secure Sign-In</span>
+    <div class="header-actions">
+      <div class="clock-widget"><i class="fas fa-calendar-day"></i><span class="clockDateTime">—</span></div>
+      <select class="lang-switch" id="langSwitch">
+        <option value="en">EN</option>
+        <option value="ar">AR</option>
+        <option value="fr">FR</option>
+      </select>
     </div>
   </div>
 </header>
 
-<div class="app-container" id="appContainer">
+<div class="app-container">
   <!-- LOGIN -->
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
-      <h2><i class="fas fa-id-card"></i> Student Login</h2>
-      <p>Enter your name and ID number to access the daily presence form.</p>
+      <h2><i class="fas fa-id-card"></i> <span data-i18n="login.title">Student Login</span></h2>
+      <p data-i18n="login.hint">Enter your name and ID number to access the daily presence form.</p>
       <div class="input-group">
-        <label for="loginName">Full Name</label>
+        <label data-i18n="form.name">Full Name</label>
         <input type="text" id="loginName" placeholder="e.g. Alex Johnson" autocomplete="off" />
       </div>
       <div class="input-group">
-        <label for="loginId">ID Number</label>
+        <label data-i18n="form.id">ID Number</label>
         <input type="text" id="loginId" placeholder="e.g. STU-2025-001" autocomplete="off" />
       </div>
-      <button class="btn-login" id="loginBtn"><i class="fas fa-arrow-right-to-bracket"></i> Login</button>
+      <button class="btn-login" id="loginBtn"><i class="fas fa-arrow-right-to-bracket"></i> <span data-i18n="btn.login">Login</span></button>
       <div class="error-msg" id="loginError"></div>
     </div>
   </div>
@@ -207,29 +204,27 @@
   <div class="dashboard" id="dashboard">
     <div class="form-section">
       <div class="header-welcome">
-        <h2><i class="fas fa-user-check"></i> Daily Presence</h2>
-        <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <h2><i class="fas fa-user-check"></i> <span data-i18n="dash.title">Daily Presence</span></h2>
+        <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span data-i18n="btn.logout">Logout</span></button>
       </div>
 
       <form class="sign-form" id="presenceForm">
         <div class="form-row">
-          <div class="form-field"><label>Full Name</label><input type="text" id="studentName" readonly /></div>
-          <div class="form-field"><label>ID Number</label><input type="text" id="studentId" readonly /></div>
+          <div class="form-field"><label data-i18n="form.name">Full Name</label><input type="text" id="studentName" readonly /></div>
+          <div class="form-field"><label data-i18n="form.id">ID Number</label><input type="text" id="studentId" readonly /></div>
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label>Department</label>
+            <label data-i18n="form.department">Department</label>
             <select id="department">
+              <option value="Islamic and Arabic">Islamic and Arabic</option>
               <option value="Computer Science">Computer Science</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Business">Business</option>
-              <option value="Mathematics">Mathematics</option>
-              <option value="Physics">Physics</option>
-              <option value="Biology">Biology</option>
+              <option value="Human Resource Management">Human Resource Management</option>
+              <option value="Public Health">Public Health</option>
             </select>
           </div>
           <div class="form-field">
-            <label>Year</label>
+            <label data-i18n="form.year">Year</label>
             <select id="year">
               <option value="1st Year">1st Year</option>
               <option value="2nd Year">2nd Year</option>
@@ -238,41 +233,46 @@
             </select>
           </div>
         </div>
-        <div class="form-field"><label>Date &amp; Time (auto-updated)</label><input type="text" id="dateTimeDisplay" readonly /></div>
-        <div class="signature-area">
-          <span class="signature-label"><i class="fas fa-pen"></i> Signature</span>
-          <div class="signature-box"><input type="text" id="signatureInput" placeholder="Type your full name as signature" autocomplete="off" /></div>
+        <div class="form-field">
+          <label data-i18n="form.datetime">Date &amp; Time (auto-updated)</label>
+          <input type="text" id="dateTimeDisplay" readonly />
         </div>
-        <button type="submit" class="btn-sign" id="signBtn"><i class="fas fa-check-circle"></i> Sign In</button>
+        <div class="signature-area">
+          <span class="signature-label"><i class="fas fa-pen"></i> <span data-i18n="form.signature">Signature</span></span>
+          <div class="signature-box">
+            <input type="text" id="signatureInput" placeholder="Type your full name as signature" data-i18n-placeholder="form.signaturePlaceholder" autocomplete="off" />
+          </div>
+        </div>
+        <button type="submit" class="btn-sign" id="signBtn"><i class="fas fa-check-circle"></i> <span data-i18n="btn.signin">Sign In</span></button>
       </form>
     </div>
 
     <aside class="sidebar">
-      <h3><i class="fas fa-chart-simple"></i> Attendance Stats</h3>
+      <h3><i class="fas fa-chart-simple"></i> <span data-i18n="stats.title">Attendance Stats</span></h3>
       <div class="stat-card">
-        <div class="stat-row"><span class="stat-label"><i class="fas fa-calendar-check"></i> Total days</span><span class="stat-value" id="totalDays">0</span></div>
-        <div class="stat-row"><span class="stat-label"><i class="fas fa-user-graduate"></i> Present days</span><span class="stat-value" id="presentDays">0</span></div>
-        <div class="stat-row"><span class="stat-label"><i class="fas fa-clock"></i> Last sign-in</span><span class="stat-value" id="lastSignIn" style="font-size:13px;">—</span></div>
+        <div class="stat-row"><span class="stat-label"><i class="fas fa-calendar-check"></i> <span data-i18n="stats.total">Total days</span></span><span class="stat-value" id="totalDays">0</span></div>
+        <div class="stat-row"><span class="stat-label"><i class="fas fa-user-graduate"></i> <span data-i18n="stats.present">Present days</span></span><span class="stat-value" id="presentDays">0</span></div>
+        <div class="stat-row"><span class="stat-label"><i class="fas fa-clock"></i> <span data-i18n="stats.last">Last sign-in</span></span><span class="stat-value" id="lastSignIn" style="font-size:12px;">—</span></div>
         <div class="attendance-progress"><div class="progress-fill" id="progressFill"></div></div>
         <div class="percentage-text" id="percentageText">0%</div>
       </div>
 
-      <!-- NEW: GRADES SECTION -->
-      <div class="grades-card">
-        <h4><i class="fas fa-award"></i> My Grades</h4>
-        <button class="grades-refresh" id="refreshGradesBtn"><i class="fas fa-rotate-right"></i> Refresh grades</button>
-        <ul class="grades-list" id="gradesList">
-          <li class="grades-empty">No grades published yet.</li>
-        </ul>
+      <div class="info-card">
+        <h4><i class="fas fa-award"></i> <span data-i18n="grades.title">My Grades</span></h4>
+        <button class="refresh-btn" id="refreshGradesBtn"><i class="fas fa-rotate-right"></i> <span data-i18n="grades.refresh">Refresh</span></button>
+        <ul class="grades-list" id="gradesList"><li class="empty-mini" data-i18n="grades.empty">No grades published yet.</li></ul>
+      </div>
+
+      <div class="info-card">
+        <h4><i class="fas fa-bullhorn" style="color:#e67e22;"></i> <span data-i18n="ann.title">Announcements</span></h4>
+        <ul class="ann-list" id="announcementsList"><li class="empty-mini" data-i18n="ann.empty">No announcements at this time.</li></ul>
       </div>
 
       <div>
-        <h3><i class="fas fa-list-ul"></i> Recent sign-ins</h3>
-        <ul class="recent-list" id="recentList">
-          <li style="color:#8aa1be; justify-content:center;">No records yet</li>
-        </ul>
+        <h3><i class="fas fa-list-ul"></i> <span data-i18n="recent.title">Recent sign-ins</span></h3>
+        <ul class="recent-list" id="recentList"><li style="color:#8aa1be;justify-content:center;" data-i18n="recent.empty">No records yet</li></ul>
       </div>
-      <div class="note"><i class="fas fa-circle-info"></i> Each sign-in counts for today.</div>
+      <div class="note"><i class="fas fa-circle-info"></i> <span data-i18n="note.each">Each sign-in counts for today.</span></div>
     </aside>
   </div>
 </div>
@@ -280,61 +280,50 @@
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-col">
-      <h4><i class="fas fa-address-card"></i> Contact Us</h4>
+      <h4><i class="fas fa-address-card"></i> <span data-i18n="footer.contact">Contact Us</span></h4>
       <div class="contact-row"><i class="fas fa-location-dot"></i> 12 Knowledge Avenue, Accra, Ghana</div>
       <div class="contact-row"><i class="fas fa-envelope"></i> info@mbac.edu.gh</div>
       <div class="contact-row"><i class="fas fa-phone"></i> +233 20 123 4567</div>
       <div class="contact-row"><i class="fas fa-clock"></i> Mon – Fri · 8:00 AM – 5:00 PM</div>
       <div class="contact-actions">
-        <a class="contact-btn whatsapp" href="https://wa.me/233201234567?text=Hello%20MbAC" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="contact-btn whatsapp" href="https://wa.me/233201234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a class="contact-btn phone" href="tel:+233201234567"><i class="fas fa-phone"></i> Call</a>
-        <a class="contact-btn message" href="https://wa.me/233201234567?text=Message" target="_blank" rel="noopener"><i class="fas fa-comment-dots"></i> Message</a>
-        <a class="contact-btn sms" href="sms:+233201234567?body=Hello%20MbAC"><i class="fas fa-comment-sms"></i> SMS</a>
+        <a class="contact-btn message" href="https://wa.me/233201234567" target="_blank"><i class="fas fa-comment-dots"></i> Message</a>
+        <a class="contact-btn sms" href="sms:+233201234567"><i class="fas fa-comment-sms"></i> SMS</a>
       </div>
     </div>
     <div class="footer-col">
-      <h4><i class="fas fa-book-open"></i> Our Programs</h4>
+      <h4><i class="fas fa-book-open"></i> <span data-i18n="footer.programs">Our Programs</span></h4>
       <ul class="programs-list">
-        <li><i class="fas fa-microchip"></i> BSc. Computer Science</li>
-        <li><i class="fas fa-gears"></i> BEng. Engineering</li>
-        <li><i class="fas fa-briefcase"></i> BBA Business Administration</li>
-        <li><i class="fas fa-square-root-variable"></i> BSc. Mathematics</li>
-        <li><i class="fas fa-atom"></i> BSc. Physics</li>
-        <li><i class="fas fa-dna"></i> BSc. Biology</li>
+        <li><i class="fas fa-mosque"></i> Islamic and Arabic</li>
+        <li><i class="fas fa-microchip"></i> Computer Science</li>
+        <li><i class="fas fa-users"></i> Human Resource Management</li>
+        <li><i class="fas fa-heart-pulse"></i> Public Health</li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><i class="fas fa-calendar-days"></i> Upcoming Events</h4>
+      <h4><i class="fas fa-calendar-days"></i> <span data-i18n="footer.events">Upcoming Events</span></h4>
       <ul class="events-list">
         <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">DEC 05</span> Annual Science Fair</span><span class="event-meta">Main Auditorium · 9:00 AM</span></span></li>
-        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">DEC 12</span> Career &amp; Internship Day</span><span class="event-meta">Conference Hall · 10:00 AM</span></span></li>
-        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">JAN 08</span> New Semester Orientation</span><span class="event-meta">Campus Quad · 8:30 AM</span></span></li>
-        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">JAN 20</span> Inter-College Debate</span><span class="event-meta">Lecture Theatre 2 · 2:00 PM</span></span></li>
+        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">DEC 12</span> Career Day</span><span class="event-meta">Conference Hall · 10:00 AM</span></span></li>
+        <li><i class="fas fa-circle-dot"></i><span><span class="event-title"><span class="event-date">JAN 08</span> Orientation</span><span class="event-meta">Campus Quad · 8:30 AM</span></span></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4><i class="fas fa-code"></i> Developer</h4>
+      <h4><i class="fas fa-code"></i> <span data-i18n="footer.dev">Developer</span></h4>
       <div class="dev-card">
-        <div class="dev-head">
-          <div class="dev-avatar">M</div>
-          <div><div class="dev-name">Muhammad A. Bello</div><div class="dev-role">Full-Stack Developer · MbAC IT</div></div>
-        </div>
+        <div class="dev-head"><div class="dev-avatar">M</div><div><div class="dev-name">Muhammad A. Bello</div><div class="dev-role">Full-Stack Developer · MbAC IT</div></div></div>
         <div class="dev-links">
           <a href="mailto:dev@mbac.edu.gh"><i class="fas fa-envelope"></i> dev@mbac.edu.gh</a>
           <a href="tel:+233551234567"><i class="fas fa-phone"></i> +233 55 123 4567</a>
-          <a href="https://github.com/" target="_blank" rel="noopener"><i class="fab fa-github"></i> github.com/mbac-dev</a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> linkedin.com/in/mbac-dev</a>
-          <a href="https://wa.me/233551234567" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Developer</a>
+          <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i> github.com/mbac-dev</a>
         </div>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="brand-mini">
-      <div class="logo-mini">MbAC</div>
-      <span>© <span id="footerYear"></span> Malik bin Anas College of West Africa. All rights reserved.</span>
-    </div>
-    <span>Daily Presence Portal · v1.1</span>
+    <div class="brand-mini"><div class="logo-mini">MbAC</div><span>© <span id="footerYear"></span> Malik bin Anas College of West Africa</span></div>
+    <span>Student Portal · v2.0</span>
   </div>
 </footer>
 
@@ -342,89 +331,109 @@
 
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
 const SUPABASE_URL = 'https://tvbuxljxkvflntjububs.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2YnV4bGp4a3ZmbG50anVidWJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUwMzAzOTYsImV4cCI6MjExMDYwNjM5Nn0.74vBpNRFSWwyqIAMnakvA0NhSst2Qnzh4tIzFmvt65g';
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// I18N
+const I18N = {
+  'header.college': { en: 'Malik bin Anas College of West Africa', ar: 'كلية مالك بن أنس لغرب أفريقيا', fr: "Collège Malik bin Anas d'Afrique de l'Ouest" },
+  'header.tagline': { en: 'Excellence · Integrity · Knowledge', ar: 'التميز · النزاهة · المعرفة', fr: 'Excellence · Intégrité · Connaissance' },
+  'login.title': { en: 'Student Login', ar: 'تسجيل دخول الطالب', fr: 'Connexion étudiant' },
+  'login.hint': { en: 'Enter your name and ID number to access the daily presence form.', ar: 'أدخل اسمك ورقم هويتك للوصول إلى نموذج الحضور اليومي.', fr: 'Entrez votre nom et ID pour accéder au formulaire de présence.' },
+  'form.name': { en: 'Full Name', ar: 'الاسم الكامل', fr: 'Nom complet' },
+  'form.id': { en: 'ID Number', ar: 'رقم الهوية', fr: "Numéro d'identification" },
+  'form.department': { en: 'Department', ar: 'القسم', fr: 'Département' },
+  'form.year': { en: 'Year', ar: 'السنة', fr: 'Année' },
+  'form.datetime': { en: 'Date & Time (auto-updated)', ar: 'التاريخ والوقت (تحديث تلقائي)', fr: 'Date et heure (mise à jour auto)' },
+  'form.signature': { en: 'Signature', ar: 'التوقيع', fr: 'Signature' },
+  'form.signaturePlaceholder': { en: 'Type your full name as signature', ar: 'اكتب اسمك الكامل كتوقيع', fr: 'Tapez votre nom complet comme signature' },
+  'btn.login': { en: 'Login', ar: 'تسجيل الدخول', fr: 'Se connecter' },
+  'btn.logout': { en: 'Logout', ar: 'تسجيل الخروج', fr: 'Déconnexion' },
+  'btn.signin': { en: 'Sign In', ar: 'تسجيل الحضور', fr: 'Signer' },
+  'dash.title': { en: 'Daily Presence', ar: 'الحضور اليومي', fr: 'Présence quotidienne' },
+  'stats.title': { en: 'Attendance Stats', ar: 'إحصائيات الحضور', fr: 'Statistiques de présence' },
+  'stats.total': { en: 'Total days', ar: 'إجمالي الأيام', fr: 'Total des jours' },
+  'stats.present': { en: 'Present days', ar: 'أيام الحضور', fr: 'Jours présents' },
+  'stats.last': { en: 'Last sign-in', ar: 'آخر تسجيل', fr: 'Dernière connexion' },
+  'grades.title': { en: 'My Grades', ar: 'درجاتي', fr: 'Mes notes' },
+  'grades.refresh': { en: 'Refresh', ar: 'تحديث', fr: 'Actualiser' },
+  'grades.empty': { en: 'No grades published yet.', ar: 'لا توجد درجات منشورة بعد.', fr: 'Aucune note publiée.' },
+  'ann.title': { en: 'Announcements', ar: 'الإعلانات', fr: 'Annonces' },
+  'ann.empty': { en: 'No announcements at this time.', ar: 'لا توجد إعلانات حاليا.', fr: 'Aucune annonce pour le moment.' },
+  'recent.title': { en: 'Recent sign-ins', ar: 'التسجيلات الأخيرة', fr: 'Connexions récentes' },
+  'recent.empty': { en: 'No records yet', ar: 'لا توجد سجلات بعد', fr: 'Aucun enregistrement' },
+  'note.each': { en: 'Each sign-in counts for today.', ar: 'كل تسجيل يحتسب لليوم.', fr: 'Chaque connexion compte pour aujourd\'hui.' },
+  'footer.contact': { en: 'Contact Us', ar: 'اتصل بنا', fr: 'Contactez-nous' },
+  'footer.programs': { en: 'Our Programs', ar: 'برامجنا', fr: 'Nos programmes' },
+  'footer.events': { en: 'Upcoming Events', ar: 'الأحداث القادمة', fr: 'Événements à venir' },
+  'footer.dev': { en: 'Developer', ar: 'المطور', fr: 'Développeur' },
+  'msg.enterBoth': { en: 'Please enter both name and ID number.', ar: 'يرجى إدخال الاسم ورقم الهوية.', fr: 'Veuillez entrer le nom et le numéro ID.' },
+  'msg.idShort': { en: 'ID number must be at least 3 characters.', ar: 'يجب أن يكون رقم الهوية 3 أحرف على الأقل.', fr: 'Le numéro ID doit contenir au moins 3 caractères.' },
+  'msg.loginSuccess': { en: 'Login successful!', ar: 'تم تسجيل الدخول بنجاح!', fr: 'Connexion réussie !' },
+  'msg.loginFail': { en: 'Login failed. Check your name and ID.', ar: 'فشل تسجيل الدخول. تحقق من اسمك وهويّتك.', fr: 'Échec de connexion. Vérifiez votre nom et ID.' },
+  'msg.enterSignature': { en: 'Please enter your signature before signing in.', ar: 'يرجى إدخال توقيعك قبل تسجيل الحضور.', fr: 'Veuillez saisir votre signature avant de signer.' },
+  'msg.signedIn': { en: 'Sign-in successful for today!', ar: 'تم تسجيل الحضور بنجاح لهذا اليوم!', fr: 'Présence enregistrée pour aujourd\'hui !' },
+  'msg.signFail': { en: 'Sign-in failed.', ar: 'فشل تسجيل الحضور.', fr: 'Échec de la signature.' }
+};
+let currentLang = 'en';
+function t(key){ const e = I18N[key]; if (!e) return key; return e[currentLang] || e.en || key; }
+function applyI18n(){
+  document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+}
+function tickClock(){
+  const loc = currentLang === 'ar' ? 'ar-EG' : currentLang === 'fr' ? 'fr-FR' : 'en-US';
+  const s = new Date().toLocaleString(loc,{weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.querySelectorAll('.clockDateTime').forEach(el => el.textContent = s);
+}
+document.getElementById('langSwitch').addEventListener('change', e => {
+  currentLang = e.target.value; applyI18n(); tickClock();
+  if (currentUser.id) { loadStudentAnnouncements(); loadGrades(); }
+});
+
+// DOM
 const loginScreen = document.getElementById('loginScreen');
-const dashboard   = document.getElementById('dashboard');
-const loginBtn    = document.getElementById('loginBtn');
-const loginName   = document.getElementById('loginName');
-const loginId     = document.getElementById('loginId');
-const loginError  = document.getElementById('loginError');
-const logoutBtn   = document.getElementById('logoutBtn');
-
+const dashboard = document.getElementById('dashboard');
+const loginBtn = document.getElementById('loginBtn');
+const loginName = document.getElementById('loginName');
+const loginId = document.getElementById('loginId');
+const loginError = document.getElementById('loginError');
+const logoutBtn = document.getElementById('logoutBtn');
 const studentName = document.getElementById('studentName');
-const studentId   = document.getElementById('studentId');
-const department  = document.getElementById('department');
-const year        = document.getElementById('year');
+const studentId = document.getElementById('studentId');
+const department = document.getElementById('department');
+const year = document.getElementById('year');
 const dateTimeDisplay = document.getElementById('dateTimeDisplay');
-const signatureInput  = document.getElementById('signatureInput');
-const presenceForm    = document.getElementById('presenceForm');
-const signBtn         = document.getElementById('signBtn');
-
-const totalDaysEl    = document.getElementById('totalDays');
-const presentDaysEl  = document.getElementById('presentDays');
-const lastSignInEl   = document.getElementById('lastSignIn');
-const progressFill   = document.getElementById('progressFill');
+const signatureInput = document.getElementById('signatureInput');
+const presenceForm = document.getElementById('presenceForm');
+const signBtn = document.getElementById('signBtn');
+const totalDaysEl = document.getElementById('totalDays');
+const presentDaysEl = document.getElementById('presentDays');
+const lastSignInEl = document.getElementById('lastSignIn');
+const progressFill = document.getElementById('progressFill');
 const percentageText = document.getElementById('percentageText');
-const recentList     = document.getElementById('recentList');
-
-const gradesList       = document.getElementById('gradesList');
+const recentList = document.getElementById('recentList');
+const gradesList = document.getElementById('gradesList');
+const announcementsList = document.getElementById('announcementsList');
 const refreshGradesBtn = document.getElementById('refreshGradesBtn');
-
 const toast = document.getElementById('toast');
 
 let currentUser = { name:'', id:'' };
 let clockInterval = null;
 
-function showToast(msg, type='info') {
-  toast.textContent = msg;
-  toast.className = 'toast show ' + (type === 'error' ? 'error' : type === 'success' ? 'success' : '');
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => toast.className = 'toast', 3500);
-}
+function showToast(msg, type='info'){ toast.textContent = msg; toast.className = 'toast show ' + (type === 'error' ? 'error' : type === 'success' ? 'success' : ''); clearTimeout(showToast._t); showToast._t = setTimeout(() => toast.className = 'toast', 3500); }
+function setLoginError(msg, success=false){ loginError.textContent = msg; loginError.className = 'error-msg' + (success ? ' success-msg' : ''); }
+function setBusy(busy){ loginBtn.disabled = busy; signBtn.disabled = busy; loginBtn.innerHTML = busy ? '<i class="fas fa-spinner fa-spin"></i> Please wait…' : '<i class="fas fa-arrow-right-to-bracket"></i> ' + t('btn.login'); }
+function updateDateTimeDisplay(){ const now = new Date(); const loc = currentLang === 'ar' ? 'ar-EG' : currentLang === 'fr' ? 'fr-FR' : 'en-US'; dateTimeDisplay.value = now.toLocaleString(loc,{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
+function startClock(){ if (clockInterval) clearInterval(clockInterval); clockInterval = setInterval(() => { if (dashboard.style.display === 'grid') updateDateTimeDisplay(); tickClock(); }, 1000); }
 
-function esc(s) {
-  if (s == null) return '';
-  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-}
-
-function setLoginError(msg, success=false) {
-  loginError.textContent = msg;
-  loginError.className = 'error-msg' + (success ? ' success-msg' : '');
-}
-
-function setBusy(busy) {
-  loginBtn.disabled = busy;
-  signBtn.disabled = busy;
-  loginBtn.innerHTML = busy ? '<i class="fas fa-spinner fa-spin"></i> Please wait…' : '<i class="fas fa-arrow-right-to-bracket"></i> Login';
-}
-
-function updateDateTimeDisplay() {
-  const now = new Date();
-  dateTimeDisplay.value = now.toLocaleDateString('en-US', {
-    weekday:'long', year:'numeric', month:'long', day:'numeric',
-    hour:'2-digit', minute:'2-digit', second:'2-digit'
-  });
-}
-
-function startClock() {
-  if (clockInterval) clearInterval(clockInterval);
-  clockInterval = setInterval(() => {
-    if (dashboard.style.display === 'grid') updateDateTimeDisplay();
-  }, 1000);
-}
-
-async function refreshSidebarStats() {
+async function refreshSidebarStats(){
   if (!currentUser.id) return;
   try {
-    const { data: stats, error } = await supabase
-      .from('student_attendance_stats')
-      .select('*')
-      .eq('student_id', currentUser.id)
-      .single();
+    const { data: stats, error } = await supabase.from('student_attendance_stats').select('*').eq('student_id', currentUser.id).single();
     if (error) throw error;
     const presentDays = Number(stats.total_present_days) || 0;
     const percentage = Number(stats.attendance_percentage) || 0;
@@ -432,153 +441,121 @@ async function refreshSidebarStats() {
     presentDaysEl.textContent = presentDays;
     percentageText.textContent = percentage + '%';
     progressFill.style.width = Math.min(100, percentage) + '%';
-    if (stats.last_sign_in) {
-      const dt = new Date(stats.last_sign_in);
-      lastSignInEl.textContent = dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + dt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-    } else lastSignInEl.textContent = '—';
+    if (stats.last_sign_in) { const dt = new Date(stats.last_sign_in); lastSignInEl.textContent = dt.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' ' + dt.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+    else lastSignInEl.textContent = '—';
     await refreshRecent();
-  } catch (err) {
-    console.error('Stats error:', err.message);
-  }
+  } catch (err) { console.error(err.message); }
 }
-
-async function refreshRecent() {
-  const { data: recent, error } = await supabase.rpc('get_recent_attendance', { p_student_id: currentUser.id, p_limit: 5 });
-  if (error) { console.error(error); return; }
-  if (!recent || recent.length === 0) {
-    recentList.innerHTML = '<li style="color:#8aa1be; justify-content:center;">No records yet</li>';
-    return;
-  }
-  recentList.innerHTML = recent.map(r => `<li><span class="date-badge">${r.attendance_date}</span><span>${esc(r.department)} · ${esc(r.year)}</span></li>`).join('');
+async function refreshRecent(){
+  const { data, error } = await supabase.rpc('get_recent_attendance',{p_student_id:currentUser.id,p_limit:5});
+  if (error) return;
+  if (!data || !data.length) { recentList.innerHTML = '<li style="color:#8aa1be;justify-content:center;">' + t('recent.empty') + '</li>'; return; }
+  recentList.innerHTML = data.map(r => `<li><span class="date-badge">${r.attendance_date}</span><span>${r.department} · ${r.year}</span></li>`).join('');
 }
-
-// NEW: load grades
-async function loadGrades() {
+async function loadGrades(){
   if (!currentUser.id) return;
-  gradesList.innerHTML = '<li class="grades-empty"><i class="fas fa-spinner fa-spin"></i> Loading…</li>';
+  gradesList.innerHTML = '<li class="empty-mini"><i class="fas fa-spinner fa-spin"></i></li>';
   try {
-    const { data, error } = await supabase.rpc('get_student_grades', { p_student_id: currentUser.id });
+    const { data, error } = await supabase.rpc('get_student_grades',{p_student_id:currentUser.id});
     if (error) throw error;
-    if (!data || data.length === 0) {
-      gradesList.innerHTML = '<li class="grades-empty">No grades published yet.</li>';
-      return;
-    }
+    if (!data || !data.length) { gradesList.innerHTML = '<li class="empty-mini">' + t('grades.empty') + '</li>'; return; }
     gradesList.innerHTML = data.map(g => {
       const score = Number(g.score);
       const cls = score >= 70 ? 'a' : score >= 50 ? 'c' : 'f';
-      return `
-        <li>
-          <div class="grade-item">
-            <div class="grade-module">${esc(g.module_name)}</div>
-            <div class="grade-badge ${cls}">${esc(g.letter_grade)}</div>
-          </div>
-          <div class="grade-meta">
-            ${score}% · ${esc(g.lecturer_name || 'Lecturer')} · ${g.published_at ? new Date(g.published_at).toLocaleDateString() : ''}
-          </div>
-        </li>
-      `;
+      return `<li><div class="grade-item"><div class="grade-module">${g.module_name}</div><div class="grade-badge ${cls}">${g.letter_grade}</div></div><div class="grade-meta">${score}% · ${g.lecturer_name || 'Lecturer'} · ${g.published_at ? new Date(g.published_at).toLocaleDateString() : ''}</div></li>`;
     }).join('');
-  } catch (err) {
-    console.error('Grades error:', err.message);
-    gradesList.innerHTML = '<li class="grades-empty">Could not load grades.</li>';
-  }
+  } catch (err) { gradesList.innerHTML = '<li class="empty-mini">Could not load grades.</li>'; }
+}
+async function loadStudentAnnouncements(){
+  if (!currentUser.id) return;
+  try {
+    const { data, error } = await supabase.rpc('get_announcements_for_audience',{p_audience:'students'});
+    if (error) throw error;
+    if (!data || !data.length) { announcementsList.innerHTML = '<li class="empty-mini">' + t('ann.empty') + '</li>'; return; }
+    announcementsList.innerHTML = data.slice(0,5).map(a => {
+      const cat = a.category || 'academic';
+      const cls = cat === 'financial' ? 'financial' : cat === 'social' ? 'social' : '';
+      const urgent = a.priority === 'urgent' ? 'urgent' : '';
+      return `<li class="ann-item">
+        <div class="ann-title"><span>${a.title}</span><span class="ann-tag ${cls} ${urgent}">${cat}</span></div>
+        <div class="ann-body">${a.body}</div>
+        ${a.closing ? `<div class="ann-closing"><i class="fas fa-quote-left"></i> ${a.closing}</div>` : ''}
+        <div class="ann-meta"><i class="fas fa-user"></i> ${a.created_by} · <i class="fas fa-clock"></i> ${new Date(a.created_at).toLocaleDateString()}</div>
+      </li>`;
+    }).join('');
+  } catch (err) { console.error(err); }
 }
 
-async function handleLogin() {
+async function handleLogin(){
   const name = loginName.value.trim();
-  const id   = loginId.value.trim();
-  if (!name || !id) { setLoginError('Please enter both name and ID number.'); return; }
-  if (id.length < 3) { setLoginError('ID number must be at least 3 characters.'); return; }
-  setLoginError('');
-  setBusy(true);
+  const id = loginId.value.trim();
+  if (!name || !id) { setLoginError(t('msg.enterBoth')); return; }
+  if (id.length < 3) { setLoginError(t('msg.idShort')); return; }
+  setLoginError(''); setBusy(true);
   try {
-    let { data: found, error } = await supabase.rpc('login_student', { p_full_name: name, p_student_id: id });
+    let { data: found, error } = await supabase.rpc('login_student',{p_full_name:name,p_student_id:id});
     if (error) throw error;
-    if (!found || found.length === 0) {
-      const { data: registered, error: regErr } = await supabase.rpc('register_student', { p_full_name: name, p_student_id: id });
+    if (!found || !found.length) {
+      const { data: reg, error: regErr } = await supabase.rpc('register_student',{p_full_name:name,p_student_id:id});
       if (regErr) throw regErr;
-      found = registered;
+      found = reg;
     }
     const student = found[0];
     if (!student) throw new Error('Unable to log in.');
-    currentUser.name = student.full_name;
-    currentUser.id   = student.student_id;
-    studentName.value = student.full_name;
-    studentId.value   = student.student_id;
+    currentUser.name = student.full_name; currentUser.id = student.student_id;
+    studentName.value = student.full_name; studentId.value = student.student_id;
     if (student.department) department.value = student.department;
-    if (student.year)       year.value       = student.year;
-    setLoginError('Login successful!', true);
+    if (student.year) year.value = student.year;
+    setLoginError(t('msg.loginSuccess'), true);
     showDashboard();
-  } catch (err) {
-    console.error(err);
-    setLoginError(err.message || 'Login failed. Check your name and ID.');
-  } finally { setBusy(false); }
+  } catch (err) { setLoginError(err.message || t('msg.loginFail')); }
+  finally { setBusy(false); }
 }
-
-function showDashboard() {
+function showDashboard(){
   loginScreen.classList.add('hidden');
   dashboard.style.display = 'grid';
   signatureInput.value = '';
   updateDateTimeDisplay();
   refreshSidebarStats();
   loadGrades();
+  loadStudentAnnouncements();
   startClock();
+  applyI18n();
 }
-
-function showLogin() {
+function showLogin(){
   if (clockInterval) clearInterval(clockInterval);
   loginScreen.classList.remove('hidden');
   dashboard.style.display = 'none';
-  loginName.value = '';
-  loginId.value = '';
-  signatureInput.value = '';
-  setLoginError('');
-  currentUser = { name:'', id:'' };
+  loginName.value = ''; loginId.value = ''; signatureInput.value = '';
+  setLoginError(''); currentUser = { name:'', id:'' };
 }
-
-async function handleSignIn(e) {
+async function handleSignIn(e){
   e.preventDefault();
   const signature = signatureInput.value.trim();
-  if (!signature) { showToast('Please enter your signature before signing in.', 'error'); return; }
+  if (!signature) { showToast(t('msg.enterSignature'), 'error'); return; }
   setBusy(true);
   try {
-    const { data, error } = await supabase.rpc('sign_in_daily', {
-      p_student_id: currentUser.id,
-      p_signature: signature,
-      p_department: department.value,
-      p_year: year.value
-    });
+    const { data, error } = await supabase.rpc('sign_in_daily',{p_student_id:currentUser.id,p_signature:signature,p_department:department.value,p_year:year.value});
     if (error) throw error;
     const result = data[0];
-    if (!result || !result.success) { showToast(result?.message || 'Unable to sign in.', 'error'); return; }
+    if (!result || !result.success) { showToast(result?.message || t('msg.signFail'), 'error'); return; }
     signatureInput.value = '';
     updateDateTimeDisplay();
     await refreshSidebarStats();
-    showToast('Sign-in successful for today!', 'success');
-  } catch (err) {
-    console.error(err);
-    showToast(err.message || 'Sign-in failed.', 'error');
-  } finally { setBusy(false); }
-}
-
-function handleLogout() {
-  showLogin();
-  showToast('Logged out.', 'info');
+    showToast(t('msg.signedIn'), 'success');
+  } catch (err) { showToast(err.message || t('msg.signFail'), 'error'); }
+  finally { setBusy(false); }
 }
 
 loginBtn.addEventListener('click', handleLogin);
 loginName.addEventListener('keypress', e => { if (e.key === 'Enter') handleLogin(); });
-loginId.addEventListener('keypress',   e => { if (e.key === 'Enter') handleLogin(); });
+loginId.addEventListener('keypress', e => { if (e.key === 'Enter') handleLogin(); });
 presenceForm.addEventListener('submit', handleSignIn);
-logoutBtn.addEventListener('click', handleLogout);
+logoutBtn.addEventListener('click', () => { showLogin(); showToast('Logged out.', 'info'); });
 refreshGradesBtn.addEventListener('click', loadGrades);
 
-(function init() {
-  document.getElementById('footerYear').textContent = new Date().getFullYear();
-  showLogin();
-  startClock();
-  updateDateTimeDisplay();
-})();
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+applyI18n(); tickClock(); startClock(); updateDateTimeDisplay();
 </script>
 </body>
 </html>
